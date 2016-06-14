@@ -7,8 +7,6 @@ sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g /usr/local/transitime/config/*
 sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g /usr/local/transitime/config/*
 sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g /usr/local/transitime/config/*
 
-cp /usr/local/transitime/config/transitime.properties /usr/local/transitimeTomcatConfig/transitime.properties
-
 java -Xmx1000M -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.configFiles=/usr/local/transitime/config/transiTimeConfig.xml -Dtransitime.logging.dir=/usr/local/transitime/logs/ -Dlogback.configurationFile=$TRANSITIMECORE/transitime/src/main/resouces/logbackGtfs.xml -jar $TRANSITIMECORE/transitime/target/GtfsFileProcessor.jar -gtfsUrl $GTFS_URL -maxTravelTimeSegmentLength 400
 
 psql \

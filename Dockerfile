@@ -111,8 +111,6 @@ RUN \
  	chmod 777 *.sh
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitime/config/hibernate.cfg.xml
-ADD config/transitime.properties /usr/local/transitime/config/transitime.properties
-ADD config/transitime.properties /usr/local/transitimeTomcatConfig/transitime.properties
 ADD config/transiTimeConfig.xml /usr/local/transitime/config/transiTimeConfig.xml
 
 EXPOSE 8080

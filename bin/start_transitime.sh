@@ -7,8 +7,6 @@ sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g /usr/local/transitime/config/*
 sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g /usr/local/transitime/config/*
 sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g /usr/local/transitime/config/*
 
-cp /usr/local/transitime/config/transitime.properties /usr/local/transitimeTomcatConfig/transitime.properties
-
 rmiregistry &
 
 #set the API as an environment variable so we can set in JSP of template/includes.jsp in the transitime webapp
