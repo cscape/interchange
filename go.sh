@@ -8,6 +8,8 @@ docker stop $(docker ps -a -q)
 
 docker rm $(docker ps -a -q)
 
+docker rmi $(docker images -a -q)
+
 docker build -t transitime-server .
 
 docker run --name transitime-db -e POSTGRES_PASSWORD=$PGPASSWORD -d postgres

@@ -1,4 +1,4 @@
-FROM maven:3.3-jdk-7
+FROM maven:3.3-jdk-8
 MAINTAINER Nathan Walker <nathan@rylath.net>
 
 ENV TRANSITIMECORE /transitime-core
@@ -35,7 +35,7 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys \
 
 ENV TOMCAT_MAJOR 8
 ENV TOMCAT_VERSION 8.0.43
-ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
+ENV TOMCAT_TGZ_URL https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
 	&& curl -fSL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \	
@@ -61,7 +61,7 @@ RUN git clone https://github.com/scrudden/core.git /transitime-core
 WORKDIR /transitime-core
 
 #RUN git checkout kalman_predictions
-RUN git checkout historical_predictions
+RUN git checkout VIA
 
 #RUN git checkout shade_build_upstream
 

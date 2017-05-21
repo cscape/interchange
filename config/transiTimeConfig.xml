@@ -20,8 +20,9 @@
 		<allowableLateSeconds>600</allowableLateSeconds>
     </autoBlockAssigner>
     <core>
-    	<predictionGeneratorClass>org.transitime.core.predictiongenerator.average.HistoricalAveragePredictionGeneratorImpl</predictionGeneratorClass>
-    	<maxDistanceFromSegment>30000</maxDistanceFromSegment>	
+    	<predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>
+    	<maxDistanceFromSegment>30000</maxDistanceFromSegment>
+    	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>	
     </core>	
     <avl>
         <!-- URL for GTFS realtime vechicle location stream. Changed name in versions do use both for the moment. -->
@@ -55,5 +56,8 @@
     <hibernate>
         <configFile>/usr/local/transitime/config/hibernate.cfg.xml</configFile>        
     </hibernate>
-    
+    <web>
+    	<mapTileUrl>http://tile.openstreetmap.org/{z}/{x}/{y}.png</mapTileUrl>
+    	<mapTileCopyright>openstreetmap</mapTileCopyright>
+    </web>
 </transitime>
