@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-
+echo 'TRANSIIIME DOCKER: Import GTFS file.'
 # This is to substitute into config file the env values. 
-sed -i s#"POSTGRES_PORT_5432_TCP_ADDR"#"$POSTGRES_PORT_5432_TCP_ADDR"#g /usr/local/transitime/config/*
-sed -i s#"POSTGRES_PORT_5432_TCP_PORT"#"$POSTGRES_PORT_5432_TCP_PORT"#g /usr/local/transitime/config/*
-sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g /usr/local/transitime/config/*
-sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g /usr/local/transitime/config/*
-sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g /usr/local/transitime/config/*
+find /usr/local/transitime/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_ADDR"#"$POSTGRES_PORT_5432_TCP_ADDR"#g {} \;
+find /usr/local/transitime/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_PORT"#"$POSTGRES_PORT_5432_TCP_PORT"#g {} \;
+find /usr/local/transitime/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g {} \;
+find /usr/local/transitime/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
+find /usr/local/transitime/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
-java -Xmx1000M -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.configFiles=/usr/local/transitime/config/transiTimeConfig.xml -Dtransitime.logging.dir=/usr/local/transitime/logs/ -Dlogback.configurationFile=$TRANSITIMECORE/transitime/src/main/resouces/logbackGtfs.xml -jar $TRANSITIMECORE/transitime/target/GtfsFileProcessor.jar -gtfsUrl $GTFS_URL -maxTravelTimeSegmentLength 400
+
+java -Xmx1024M -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.configFiles=/usr/local/transitime/config/transiTimeConfig.xml -Dtransitime.logging.dir=/usr/local/transitime/logs/ -Dlogback.configurationFile=$TRANSITIMECORE/transitime/src/main/resouces/logbackGtfs.xml -jar $TRANSITIMECORE/transitime/target/GtfsFileProcessor.jar -gtfsUrl $GTFS_URL -maxTravelTimeSegmentLength 400
 
 psql \
 	-h "$POSTGRES_PORT_5432_TCP_ADDR" \

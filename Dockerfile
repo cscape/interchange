@@ -73,6 +73,10 @@ RUN mkdir /usr/local/transitime/db
 RUN mkdir /usr/local/transitime/config
 RUN mkdir /usr/local/transitime/logs
 RUN mkdir /usr/local/transitime/cache
+RUN mkdir /usr/local/transitime/data
+RUN mkdir /usr/local/transitime/test
+RUN mkdir /usr/local/transitime/test/config
+
 
 
 # Deploy core. The work horse of transiTime.
@@ -97,10 +101,15 @@ ADD bin/create_api_key.sh create_api_key.sh
 ADD bin/create_webagency.sh create_webagency.sh
 ADD bin/import_gtfs.sh import_gtfs.sh
 ADD bin/start_transitime.sh start_transitime.sh
-ADD bin/get_api_key.sh	get_api_key.sh
+ADD bin/get_api_key.sh get_api_key.sh
+ADD bin/import_avl.sh import_avl.sh
+ADD bin/process_avl.sh process_avl.sh
 
 # Handy utility to allow you connect directly to database
 ADD bin/connect_to_db.sh connect_to_db.sh
+
+# This is a way to copy in test data to run a regression test.
+ADD data/avl.csv /usr/local/transitime/data/avl.csv
 
 # RUN ./generate_sql.sh
 
@@ -110,6 +119,7 @@ RUN \
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitime/config/hibernate.cfg.xml
 ADD config/transiTimeConfig.xml /usr/local/transitime/config/transiTimeConfig.xml
+ADD config/test/transiTimeConfig.xml /usr/local/transitime/config/test/transiTimeConfig.xml
 
 EXPOSE 8080
 

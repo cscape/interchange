@@ -6,7 +6,10 @@
         <!-- PredictionAccuracyModule is used to store the transiTime prediction and record their accuracy. Look in class for comments explaining detail. -->
         <!-- GTFSRealtimePredictionAccuracyModule is used to store an alternative source of predictions and again record there accuracy based on actual arrival/departure times -->                            
         <optionalModulesList>org.transitime.avl.GtfsRealtimeModule;org.transitime.core.predAccuracy.PredictionAccuracyModule;org.transitime.core.predAccuracy.gtfsrt.GTFSRealtimePredictionAccuracyModule</optionalModulesList>                
-    </modules>    
+    </modules>  
+    <gtfs>
+    	<routeIdFilterRegEx>2</routeIdFilterRegEx>
+    </gtfs>    
     <predAccuracy>
     	<pollingRateMsec>240000</pollingRateMsec>
     	<!-- This value is used by GTFSRealtimePredictionAccuracyModule to pick up feed to compare against transitime feed -->
