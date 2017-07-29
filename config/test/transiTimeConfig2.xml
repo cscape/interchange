@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transitime>
     <modules>
-                <!-- <optionalModulesList>org.transitime.core.schedBasedPreds.SchedBasedPredsModule;org.transitime.avl.GtfsRealtimeModule;org.t
-ransitime.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>  -->    	 
-    	<optionalModulesList>org.transitime.avl.PlaybackModule</optionalModulesList>    	    	
+    	<optionalModulesList>org.transitime.avl.PlaybackModule;org.transitime.core.predAccuracy.PlaybackPredictionAccuracyModule</optionalModulesList>    	    	
     </modules>
     <gtfs>
     	<routeIdFilterRegEx>2</routeIdFilterRegEx>
@@ -16,7 +14,7 @@ ransitime.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>  -->
     </autoBlockAssigner>  
        <core>
         <!--<predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>-->
-        <predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>
+        <predictionGeneratorClass>org.transitime.core.predictiongenerator.average.scheduled.HistoricalAveragePredictionGeneratorImpl</predictionGeneratorClass>
         <headwayGeneratorClass>org.transitime.core.headwaygenerator.LastDepartureHeadwayGenerator</headwayGeneratorClass>
 		<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
         <maxDistanceFromSegment>100</maxDistanceFromSegment>
@@ -49,8 +47,8 @@ quency based services. -->
         <gtfsRealtimeFeedURI>http://realtime.prod.obahart.org:8088/vehicle-positions</gtfsRealtimeFeedURI>
         <url>http://realtime.prod.obahart.org:8088/vehicle-positions</url>
         <feedPollingRateSecs>10</feedPollingRateSecs>        
-        <playbackStartTime>07-11-2017 08:00:00</playbackStartTime>
-        <playbackEndTime>07-11-2017 20:00:00</playbackEndTime>
+        <playbackStartTime>07-11-2017 10:00:00</playbackStartTime>
+        <playbackEndTime>07-11-2017 14:00:00</playbackEndTime>
         <!-- <playbackVehicleId>1611</playbackVehicleId> -->
         <playbackRealtime>false</playbackRealtime>       
     </avl>

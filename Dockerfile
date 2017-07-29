@@ -119,7 +119,10 @@ RUN \
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitime/config/hibernate.cfg.xml
 ADD config/transiTimeConfig.xml /usr/local/transitime/config/transiTimeConfig.xml
-ADD config/test/transiTimeConfig.xml /usr/local/transitime/config/test/transiTimeConfig.xml
+
+# This adds the transitime configs to test.
+ADD config/test/* /usr/local/transitime/config/test/
+
 
 EXPOSE 8080
 
