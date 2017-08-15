@@ -1,12 +1,13 @@
 FROM maven:3.3-jdk-8
-MAINTAINER Nathan Walker <nathan@rylath.net>
+MAINTAINER Nathan Walker <nathan@rylath.net>, Sean Óg Crudden <og.crudden@gmail.com>
 
 ENV TRANSITIMECORE /transitime-core
-ENV PGPASSWORD=transitime
-ENV AGENCYNAME=CAPMETRO
-ENV AGENCYID=1
-ENV GTFS_URL="https://data.texas.gov/download/r4v4-vz24/application/zip"
-ENV GTFSRTVEHICLEPOSITIONS="https://data.texas.gov/download/eiei-9rpf/application/octet-stream"
+
+#ENV PGPASSWORD=transitime
+#ENV AGENCYNAME=CAPMETRO
+#ENV AGENCYID=1
+#ENV GTFS_URL="https://data.texas.gov/download/r4v4-vz24/application/zip"
+#ENV GTFSRTVEHICLEPOSITIONS="https://data.texas.gov/download/eiei-9rpf/application/octet-stream"
 
 RUN apt-get update \
 	&& apt-get install -y postgresql-client \
@@ -61,7 +62,7 @@ RUN git clone https://github.com/scrudden/core.git /transitime-core
 WORKDIR /transitime-core
 
 #RUN git checkout kalman_predictions
-RUN git checkout VIA
+RUN git checkout baselinetest
 
 #RUN git checkout shade_build_upstream
 
@@ -93,7 +94,7 @@ RUN cp /transitime-core/transitime/target/classes/ddl_postgres*.sql /usr/local/t
 # RUN rm -rf /transitime-core
 # RUN rm -rf ~/.m2/repository
 
-# Scripts required to start transiTime. These are in the order they need to be run.
+# Scripts required to start transiTime.
 ADD bin/check_db_up.sh check_db_up.sh
 ADD bin/generate_sql.sh generate_sql.sh
 ADD bin/create_tables.sh create_tables.sh
@@ -104,6 +105,8 @@ ADD bin/start_transitime.sh start_transitime.sh
 ADD bin/get_api_key.sh get_api_key.sh
 ADD bin/import_avl.sh import_avl.sh
 ADD bin/process_avl.sh process_avl.sh
+ADD bin/update_traveltimes.sh update_traveltimes.sh
+ADD bin/set_config.sh set_config.sh
 
 # Handy utility to allow you connect directly to database
 ADD bin/connect_to_db.sh connect_to_db.sh

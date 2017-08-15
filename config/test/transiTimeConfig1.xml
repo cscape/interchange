@@ -14,8 +14,7 @@
     </autoBlockAssigner>  
        <core>
         <!--<predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>-->
-        <predictionGeneratorClass>org.transitime.core.predictiongenerator.average.scheduled.HistoricalAveragePredictionGeneratorImpl</predictionGeneratorClass>
-        <headwayGeneratorClass>org.transitime.core.headwaygenerator.LastDepartureHeadwayGenerator</headwayGeneratorClass>
+        <predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>      
 		<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
         <maxDistanceFromSegment>100</maxDistanceFromSegment>
         <storeTravelTimeStopPathPredictions>true</storeTravelTimeStopPathPredictions>
@@ -53,7 +52,7 @@ quency based services. -->
         <playbackRealtime>false</playbackRealtime>       
     </avl>
     <cache>
-        <daysPopulateHistoricalCache>0</daysPopulateHistoricalCache>
+        <daysPopulateHistoricalCache>31</daysPopulateHistoricalCache>
     </cache>
 	 <db>        
         <dbName>AGENCYNAME</dbName>
