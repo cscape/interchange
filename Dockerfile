@@ -1,13 +1,24 @@
 FROM maven:3.3-jdk-8
 MAINTAINER Nathan Walker <nathan@rylath.net>, Sean Óg Crudden <og.crudden@gmail.com>
 
-ENV TRANSITIMECORE /transitime-core
+ARG AGENCYID="1"
+ARG AGENCYNAME="GOHART"
+ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
+ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
+ARG TRANSITIME_GITHUB="https://github.com/scrudden/core.git"
+ARG TRANSITIME_BRANCH="Egan109-master"
+ARG TRANSITIME_PROPERTIES="config/transiTimeConfig.xml"
 
-#ENV PGPASSWORD=transitime
-#ENV AGENCYNAME=CAPMETRO
-#ENV AGENCYID=1
-#ENV GTFS_URL="https://data.texas.gov/download/r4v4-vz24/application/zip"
-#ENV GTFSRTVEHICLEPOSITIONS="https://data.texas.gov/download/eiei-9rpf/application/octet-stream"
+
+ENV AGENCYID ${AGENCYID}
+ENV AGENCYNAME ${AGENCYNAME}
+ENV GTFS_URL ${GTFS_URL}
+ENV GTFSRTVEHICLEPOSITIONS ${GTFSRTVEHICLEPOSITIONS}
+ENV TRANSITIME_GITHUB ${TRANSITIME_GITHUB}
+ENV TRANSITIME_BRANCH ${TRANSITIME_BRANCH}
+ENV TRANSITIME_PROPERTIES ${TRANSITIME_PROPERTIES}
+
+ENV TRANSITIMECORE /transitime-core
 
 RUN apt-get update \
 	&& apt-get install -y postgresql-client \
@@ -55,14 +66,14 @@ RUN chmod +x ./jq
 
 RUN cp jq /usr/bin/
 
-RUN git clone https://github.com/scrudden/core.git /transitime-core
+RUN git clone ${TRANSITIME_GITHUB} /transitime-core
 
 #RUN git clone https://github.com/Transitime/core.git /transitime-core
 
 WORKDIR /transitime-core
 
 #RUN git checkout kalman_predictions
-RUN git checkout baselinetest
+RUN git checkout ${TRANSITIME_BRANCH}
 
 #RUN git checkout shade_build_upstream
 
@@ -121,7 +132,7 @@ RUN \
  	chmod 777 *.sh
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitime/config/hibernate.cfg.xml
-ADD config/transiTimeConfig.xml /usr/local/transitime/config/transiTimeConfig.xml
+ADD ${TRANSITIME_PROPERTIES} /usr/local/transitime/config/transiTimeConfig.xml
 
 # This adds the transitime configs to test.
 ADD config/test/* /usr/local/transitime/config/test/

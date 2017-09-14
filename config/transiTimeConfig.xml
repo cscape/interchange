@@ -23,7 +23,7 @@
 		<allowableLateSeconds>600</allowableLateSeconds>
     </autoBlockAssigner>
     <core>
-    	<predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass> 
+    	<predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>
     	<maxDistanceFromSegment>30000</maxDistanceFromSegment>
     	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>	
     </core>	

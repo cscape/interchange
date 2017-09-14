@@ -13,8 +13,7 @@
                 <allowableLateSeconds>1200</allowableLateSeconds>
     </autoBlockAssigner>  
        <core>
-        <!--<predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>-->
-        <predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>       
+        <predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>             
 		<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
         <maxDistanceFromSegment>100</maxDistanceFromSegment>
         <storeTravelTimeStopPathPredictions>true</storeTravelTimeStopPathPredictions>
@@ -52,7 +51,7 @@ quency based services. -->
         <playbackRealtime>false</playbackRealtime>       
     </avl>
     <cache>
-        <daysPopulateHistoricalCache>31</daysPopulateHistoricalCache>
+        <daysPopulateHistoricalCache>0</daysPopulateHistoricalCache>
     </cache>
 	 <db>        
         <dbName>AGENCYNAME</dbName>
