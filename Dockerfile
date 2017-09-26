@@ -5,8 +5,8 @@ ARG AGENCYID="1"
 ARG AGENCYNAME="GOHART"
 ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
 ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
-ARG TRANSITIME_GITHUB="https://github.com/scrudden/core.git"
-ARG TRANSITIME_BRANCH="Egan109-master"
+ARG TRANSITIME_GITHUB="https://github.com/TheTransitClock/transitime.git"
+ARG TRANSITIME_BRANCH="VIA"
 ARG TRANSITIME_PROPERTIES="config/transiTimeConfig.xml"
 
 
