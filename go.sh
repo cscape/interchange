@@ -15,7 +15,7 @@ docker build -t transitime-server \
 --build-arg GTFS_URL="http://gohart.org/google/google_transit.zip" \
 --build-arg GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions" .
 
-docker run --name transitime-db -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD -d postgres
+docker run --name transitime-db -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD -d postgres:9.6.3
 
 docker run --name transitime-server-instance --rm --link transitime-db:postgres -e PGPASSWORD=$PGPASSWORD transitime-server ./check_db_up.sh
 
