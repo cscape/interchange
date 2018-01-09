@@ -10,7 +10,7 @@ docker rmi transitime-server
 
 docker build -t transitime-server \
 --build-arg TRANSITIME_GITHUB="https://github.com/TheTransitClock/transitime.git" \
---build-arg TRANSITIME_BRANCH="VIA" \
+--build-arg TRANSITIME_BRANCH="develop" \
 --build-arg AGENCYNAME=GOHART \
 --build-arg GTFS_URL="http://gohart.org/google/google_transit.zip" \
 --build-arg GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions" .
