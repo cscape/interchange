@@ -3,6 +3,7 @@ MAINTAINER Nathan Walker <nathan@rylath.net>, Sean Óg Crudden <og.crudden@gmail
 
 ARG AGENCYID="1"
 ARG AGENCYNAME="GOHART"
+# Latest version not used for doing prediction comparison
 ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
 ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
 ARG TRANSITIME_GITHUB="https://github.com/TheTransitClock/transitime.git"
@@ -124,6 +125,8 @@ ADD bin/connect_to_db.sh connect_to_db.sh
 
 # This is a way to copy in test data to run a regression test.
 ADD data/avl.csv /usr/local/transitime/data/avl.csv
+ADD data/gtfs_hart_old.zip /usr/local/transitime/data/gtfs_hart_old.zip
+
 
 # RUN ./generate_sql.sh
 

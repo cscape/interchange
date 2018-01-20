@@ -31,4 +31,4 @@ docker run --name transitime-server-instance --rm --link transitime-db:postgres 
 
 docker run --name transitime-server-instance --rm --link transitime-db:postgres -e PGPASSWORD=$PGPASSWORD transitime-server ./process_avl.sh
 
-#docker run --name transitime-server-instance --rm --link transitime-db:postgres -e PGPASSWORD=$PGPASSWORD  -p 8080:8080 transitime-server  ./start_transitime.sh
+docker run --name transitime-server-instance --rm --link transitime-db:postgres -e PGPASSWORD=$PGPASSWORD  -p 8080:8080 transitime-server  ./start_transitime.sh

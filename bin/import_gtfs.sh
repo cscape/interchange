@@ -8,7 +8,7 @@ find /usr/local/transitime/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYN
 find /usr/local/transitime/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
 
-java -Xmx1024M -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.configFiles=/usr/local/transitime/config/transiTimeConfig.xml -Dtransitime.logging.dir=/usr/local/transitime/logs/ -Dlogback.configurationFile=$TRANSITIMECORE/transitime/src/main/resouces/logbackGtfs.xml -jar $TRANSITIMECORE/transitime/target/GtfsFileProcessor.jar -gtfsUrl $GTFS_URL -maxTravelTimeSegmentLength 400
+java -Xmx1024M -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.configFiles=/usr/local/transitime/config/transiTimeConfig.xml -Dtransitime.logging.dir=/usr/local/transitime/logs/ -Dlogback.configurationFile=$TRANSITIMECORE/transitime/src/main/resouces/logbackGtfs.xml -jar $TRANSITIMECORE/transitime/target/GtfsFileProcessor.jar -gtfsZipFileName /usr/local/transitime/data/gtfs_hart_old.zip -maxTravelTimeSegmentLength 400
 
 psql \
 	-h "$POSTGRES_PORT_5432_TCP_ADDR" \
