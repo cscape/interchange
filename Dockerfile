@@ -6,20 +6,20 @@ ARG AGENCYNAME="GOHART"
 # Latest version not used for doing prediction comparison
 ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
 ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
-ARG TRANSITIME_GITHUB="https://github.com/TheTransitClock/transitime.git"
-ARG TRANSITIME_BRANCH="VIA"
-ARG TRANSITIME_PROPERTIES="config/transiTimeConfig.xml"
+ARG TRANSITCLOCK_GITHUB="https://github.com/TheTransitClock/transitime.git"
+ARG TRANSITCLOCK_BRANCH="develop"
+ARG TRANSITCLOCK_PROPERTIES="config/transitclockConfig.xml"
 
 
 ENV AGENCYID ${AGENCYID}
 ENV AGENCYNAME ${AGENCYNAME}
 ENV GTFS_URL ${GTFS_URL}
 ENV GTFSRTVEHICLEPOSITIONS ${GTFSRTVEHICLEPOSITIONS}
-ENV TRANSITIME_GITHUB ${TRANSITIME_GITHUB}
-ENV TRANSITIME_BRANCH ${TRANSITIME_BRANCH}
-ENV TRANSITIME_PROPERTIES ${TRANSITIME_PROPERTIES}
+ENV TRANSITCLOCK_GITHUB ${TRANSITCLOCK_GITHUB}
+ENV TRANSITCLOCK_BRANCH ${TRANSITCLOCK_BRANCH}
+ENV TRANSITCLOCK_PROPERTIES ${TRANSITCLOCK_PROPERTIES}
 
-ENV TRANSITIMECORE /transitime-core
+ENV TRANSITCLOCK_CORE /transitclock-core
 
 RUN apt-get update \
 	&& apt-get install -y postgresql-client \
@@ -51,7 +51,7 @@ ENV TOMCAT_VERSION 8.0.43
 ENV TOMCAT_TGZ_URL https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
-	&& curl -fSL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \	
+	&& curl -fSL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \
 	&& tar -xvf tomcat.tar.gz --strip-components=1 \
 	&& rm bin/*.bat \
 	&& rm tomcat.tar.gz*
@@ -67,43 +67,39 @@ RUN chmod +x ./jq
 
 RUN cp jq /usr/bin/
 
-RUN git clone ${TRANSITIME_GITHUB} /transitime-core
+RUN git clone ${TRANSITCLOCK_GITHUB} ${TRANSITCLOCK_CORE}
 
-#RUN git clone https://github.com/Transitime/core.git /transitime-core
+WORKDIR ${TRANSITCLOCK_CORE}
 
-WORKDIR /transitime-core
-
-#RUN git checkout kalman_predictions
-RUN git checkout ${TRANSITIME_BRANCH}
-
-#RUN git checkout shade_build_upstream
+RUN git checkout ${TRANSITCLOCK_BRANCH}
 
 RUN mvn install -DskipTests
 
 WORKDIR /
-RUN mkdir /usr/local/transitime
-RUN mkdir /usr/local/transitime/db
-RUN mkdir /usr/local/transitime/config
-RUN mkdir /usr/local/transitime/logs
-RUN mkdir /usr/local/transitime/cache
-RUN mkdir /usr/local/transitime/data
-RUN mkdir /usr/local/transitime/test
-RUN mkdir /usr/local/transitime/test/config
+RUN mkdir /usr/local/transitclock
+RUN mkdir /usr/local/transitclock/db
+RUN mkdir /usr/local/transitclock/config
+RUN mkdir /usr/local/transitclock/logs
+RUN mkdir /usr/local/transitclock/cache
+RUN mkdir /usr/local/transitclock/data
+RUN mkdir /usr/local/transitclock/test
+RUN mkdir /usr/local/transitclock/test/config
 
 
 
 # Deploy core. The work horse of transiTime.
-RUN cp /transitime-core/transitime/target/*.jar /usr/local/transitime/
+RUN cp ${TRANSITCLOCK_CORE}/transitclock/target/*.jar /usr/local/transitclock/
 
 # Deploy API which talks to core using RMI calls.
-RUN cp /transitime-core/transitimeApi/target/api.war  /usr/local/tomcat/webapps
+RUN cp ${TRANSITCLOCK_CORE}/transitclockApi/target/api.war  /usr/local/tomcat/webapps
 
 # Deploy webapp which is a UI based on the API.
-RUN cp /transitime-core/transitimeWebapp/target/web.war  /usr/local/tomcat/webapps
+RUN cp ${TRANSITCLOCK_CORE}/transitclockWebapp/target/web.war  /usr/local/tomcat/webapps
 
-RUN cp /transitime-core/transitime/target/classes/ddl_postgres*.sql /usr/local/transitime/db
+RUN cp ${TRANSITCLOCK_CORE}/transitclock/target/classes/ddl_postgres*.sql /usr/local/transitclock/db
 
-# RUN rm -rf /transitime-core
+# RUN rm -rf /transitclock-core
+
 # RUN rm -rf ~/.m2/repository
 
 # Scripts required to start transiTime.
@@ -113,7 +109,7 @@ ADD bin/create_tables.sh create_tables.sh
 ADD bin/create_api_key.sh create_api_key.sh
 ADD bin/create_webagency.sh create_webagency.sh
 ADD bin/import_gtfs.sh import_gtfs.sh
-ADD bin/start_transitime.sh start_transitime.sh
+ADD bin/start_transitclock.sh start_transitclock.sh
 ADD bin/get_api_key.sh get_api_key.sh
 ADD bin/import_avl.sh import_avl.sh
 ADD bin/process_avl.sh process_avl.sh
@@ -124,8 +120,8 @@ ADD bin/set_config.sh set_config.sh
 ADD bin/connect_to_db.sh connect_to_db.sh
 
 # This is a way to copy in test data to run a regression test.
-ADD data/avl.csv /usr/local/transitime/data/avl.csv
-ADD data/gtfs_hart_old.zip /usr/local/transitime/data/gtfs_hart_old.zip
+ADD data/avl.csv /usr/local/transitclock/data/avl.csv
+ADD data/gtfs_hart_old.zip /usr/local/transitclock/data/gtfs_hart_old.zip
 
 
 # RUN ./generate_sql.sh
@@ -134,14 +130,13 @@ RUN \
 	sed -i 's/\r//' *.sh &&\
  	chmod 777 *.sh
 
-ADD config/postgres_hibernate.cfg.xml /usr/local/transitime/config/hibernate.cfg.xml
-ADD ${TRANSITIME_PROPERTIES} /usr/local/transitime/config/transiTimeConfig.xml
+ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
+ADD ${TRANSITCLOCK_PROPERTIES} /usr/local/transitclock/config/transitclockConfig.xml
 
 # This adds the transitime configs to test.
-ADD config/test/* /usr/local/transitime/config/test/
+ADD config/test/* /usr/local/transitclock/config/test/
 
 
 EXPOSE 8080
 
-CMD ["/start_transitime.sh"]
-
+CMD ["/start_transitclock.sh"]

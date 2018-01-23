@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-export PGPASSWORD=transitime
+export PGPASSWORD=transitclock
 
-echo 'TRANSITIME DOCKER: Check if database is runnng.'
+echo 'THETRANSITCLOCK DOCKER: Check if database is runnng.'
 RET=1
 SUCCESS=0
 until [ "$RET" -eq "$SUCCESS" ]; do
@@ -13,6 +13,6 @@ until [ "$RET" -eq "$SUCCESS" ]; do
 		then
 			echo 'Database is not running.'
 			sleep 10
-	fi    
+	fi
 done
-echo 'TRANSITIME DOCKER: Database is now running.'
+echo 'THETRANSITCLOCK DOCKER: Database is now running.'
