@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transitime>
     <modules>
-    	<optionalModulesList>org.transitime.avl.PlaybackModule;org.transitime.core.predAccuracy.PlaybackPredictionAccuracyModule</optionalModulesList>    	    	
+    	<optionalModulesList>org.transitime.avl.PlaybackModule;org.transitime.core.predAccuracy.PlaybackPredictionAccuracyModule</optionalModulesList>
     </modules>
     <gtfs>
     	<routeIdFilterRegEx>2</routeIdFilterRegEx>
-    </gtfs>      
+    </gtfs>
     <autoBlockAssigner>
                 <autoAssignerEnabled>true</autoAssignerEnabled>
                 <ignoreAvlAssignments>true</ignoreAvlAssignments>
                 <allowableEarlySeconds>1200</allowableEarlySeconds>
                 <allowableLateSeconds>1200</allowableLateSeconds>
-    </autoBlockAssigner>  
+    </autoBlockAssigner>
        <core>
-        <predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>             
+        <predictionGeneratorClass>org.transitime.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>
 		<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
         <maxDistanceFromSegment>100</maxDistanceFromSegment>
         <storeTravelTimeStopPathPredictions>true</storeTravelTimeStopPathPredictions>
@@ -36,7 +36,7 @@ quency based services. -->
         <maxHeadingOffsetFromSegment>120</maxHeadingOffsetFromSegment>
         <!--<cacheReloadStartTimeStr>02-01-2017 10:45:00</cacheReloadStartTimeStr>
         <cacheReloadEndTimeStr>02-01-2017 14:15:00</cacheReloadEndTimeStr>-->
-     
+
     </core>
 
     <predAccuracy><maxPredTimeMinutes>30</maxPredTimeMinutes></predAccuracy>
@@ -44,25 +44,25 @@ quency based services. -->
     <avl>
         <gtfsRealtimeFeedURI>http://realtime.prod.obahart.org:8088/vehicle-positions</gtfsRealtimeFeedURI>
         <url>http://realtime.prod.obahart.org:8088/vehicle-positions</url>
-        <feedPollingRateSecs>10</feedPollingRateSecs>        
+        <feedPollingRateSecs>10</feedPollingRateSecs>
         <playbackStartTime>07-10-2017 10:00:00</playbackStartTime>
         <playbackEndTime>07-10-2017 14:00:00</playbackEndTime>
         <!-- <playbackVehicleId>1611</playbackVehicleId> -->
-        <playbackRealtime>false</playbackRealtime>       
+        <playbackRealtime>false</playbackRealtime>
     </avl>
     <cache>
         <daysPopulateHistoricalCache>0</daysPopulateHistoricalCache>
     </cache>
-	 <db>        
+	 <db>
         <dbName>AGENCYNAME</dbName>
         <dbHost>POSTGRES_PORT_5432_TCP_ADDR:POSTGRES_PORT_5432_TCP_PORT</dbHost>
         <dbType>postgresql</dbType>
         <dbUserName>postgres</dbUserName>
         <dbPassword>PGPASSWORD</dbPassword>
-    </db>  
+    </db>
 	<hibernate>
 		<!-- <configFile>C:/cygwin64/home/SeanOg/workspace/transitime-historical/core/transitimeWebapp/src/main/resources/postgres_hibernate.cfg.xml</configFile> -->
-		<configFile>/usr/local/transitime/config/hibernate.cfg.xml
+		<configFile>/usr/local/transitclock/config/hibernate.cfg.xml
 		</configFile>
 	</hibernate>
 	<web>

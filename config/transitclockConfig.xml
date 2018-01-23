@@ -4,18 +4,18 @@
         <!-- <optionalModulesList>org.transitime.core.schedBasedPreds.SchedBasedPredsModule;org.transitime.avl.GtfsRealtimeModule</optionalModulesList> -->
         <!-- GtfsRealtimeModule read a GTFS vehicle location feed as the source of AVL data. -->
         <!-- PredictionAccuracyModule is used to store the transiTime prediction and record their accuracy. Look in class for comments explaining detail. -->
-        <!-- GTFSRealtimePredictionAccuracyModule is used to store an alternative source of predictions and again record there accuracy based on actual arrival/departure times -->                            
-        <optionalModulesList>org.transitime.avl.GtfsRealtimeModule;org.transitime.core.predAccuracy.PredictionAccuracyModule;org.transitime.core.predAccuracy.gtfsrt.GTFSRealtimePredictionAccuracyModule</optionalModulesList>                
-    </modules>  
+        <!-- GTFSRealtimePredictionAccuracyModule is used to store an alternative source of predictions and again record there accuracy based on actual arrival/departure times -->
+        <optionalModulesList>org.transitime.avl.GtfsRealtimeModule;org.transitime.core.predAccuracy.PredictionAccuracyModule;org.transitime.core.predAccuracy.gtfsrt.GTFSRealtimePredictionAccuracyModule</optionalModulesList>
+    </modules>
     <gtfs>
     	<routeIdFilterRegEx>2</routeIdFilterRegEx>
-    </gtfs>    
+    </gtfs>
     <predAccuracy>
     	<pollingRateMsec>240000</pollingRateMsec>
     	<!-- This value is used by GTFSRealtimePredictionAccuracyModule to pick up feed to compare against transitime feed -->
     	<gtfsTripUpdateUrl>http://realtime.prod.obahart.org:8088/trip-updates</gtfsTripUpdateUrl>
     </predAccuracy>
-    
+
     <autoBlockAssigner>
 		<autoAssignerEnabled>true</autoAssignerEnabled>
 		<ignoreAvlAssignments>false</ignoreAvlAssignments>
@@ -25,39 +25,39 @@
     <core>
     	<predictionGeneratorClass>org.transitime.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>
     	<maxDistanceFromSegment>30000</maxDistanceFromSegment>
-    	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>	
-    </core>	
+    	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
+    </core>
     <avl>
         <!-- URL for GTFS realtime vechicle location stream. Changed name in versions do use both for the moment. -->
-        <gtfsRealtimeFeedURI>GTFSRTVEHICLEPOSITIONS</gtfsRealtimeFeedURI> 		  
-		<url>GTFSRTVEHICLEPOSITIONS</url>		    
+        <gtfsRealtimeFeedURI>GTFSRTVEHICLEPOSITIONS</gtfsRealtimeFeedURI>
+		<url>GTFSRTVEHICLEPOSITIONS</url>
 		<!--  These are the values used for Irish Rail. -->
         <!-- <minLongitude>-10.725</minLongitude>
-        <maxLongitude>-5.35</maxLongitude>             
+        <maxLongitude>-5.35</maxLongitude>
         <minLatitude>51.35</minLatitude>
         <maxLatitude>55.45</maxLatitude>
-         -->                
+         -->
         <!--  defaults are for north america so only need this if we are not using data from there. -->
         <!--  These are the values used for CAPMETRO in Austin, Texas. -->
-        <!-- <minLatitude>30.145125</minLatitude>   
+        <!-- <minLatitude>30.145125</minLatitude>
         <maxLatitude>30.517681</maxLatitude>
-        
+
         <minLongitude>-98.072043</minLongitude>
         <maxLongitude>-97.495917</maxLongitude>
          -->
-                                                 
+
         <feedPollingRateSecs>30</feedPollingRateSecs>
-        
-    </avl>   
-    <db>        
+
+    </avl>
+    <db>
         <dbName>AGENCYNAME</dbName>
         <dbHost>POSTGRES_PORT_5432_TCP_ADDR:POSTGRES_PORT_5432_TCP_PORT</dbHost>
         <dbType>postgresql</dbType>
         <dbUserName>postgres</dbUserName>
         <dbPassword>PGPASSWORD</dbPassword>
-    </db>     
+    </db>
     <hibernate>
-        <configFile>/usr/local/transitime/config/hibernate.cfg.xml</configFile>        
+        <configFile>/usr/local/transitclock/config/hibernate.cfg.xml</configFile>        
     </hibernate>
     <web>
     	<mapTileUrl>http://tile.openstreetmap.org/{z}/{x}/{y}.png</mapTileUrl>
