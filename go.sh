@@ -6,14 +6,16 @@ docker stop transitclock-server-instance
 docker rm transitclock-db
 docker rm transitclock-server-instance
 
-#docker rmi transitclock-server
+docker rmi transitclock-server
 
 docker build -t transitclock-server \
 --build-arg TRANSITCLOCK_GITHUB="https://github.com/TheTransitClock/transitime.git" \
---build-arg TRANSITCLOCK_BRANCH="tc_issue_34" \
---build-arg AGENCYNAME=GOHART \
---build-arg GTFS_URL="http://gohart.org/google/google_transit.zip" \
---build-arg GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions" .
+--build-arg TRANSITCLOCK_BRANCH="tc_issue_23" \
+--build-arg TRANSITCLOCK_PROPERTIES="config/transitclockConfig.xml" \
+--build-arg AGENCYID="1" \
+--build-arg AGENCYNAME="CAPMETRO" \
+--build-arg GTFS_URL="https://data.texas.gov/download/r4v4-vz24/application%2Fzip" \
+--build-arg GTFSRTVEHICLEPOSITIONS="https://data.texas.gov/download/eiei-9rpf/application%2Foctet-stream" .
 
 docker run --name transitclock-db -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD -d postgres:9.6.3
 
@@ -27,8 +29,8 @@ docker run --name transitclock-server-instance --rm --link transitclock-db:postg
 
 docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD transitclock-server ./create_webagency.sh
 
-docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD transitclock-server ./import_avl.sh
+#docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD transitclock-server ./import_avl.sh
 
-docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD transitclock-server ./process_avl.sh
+#docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD transitclock-server ./process_avl.sh
 
-docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD  -p 8080:8080 transitclock-server  ./start_transitime.sh
+docker run --name transitclock-server-instance --rm --link transitclock-db:postgres -e PGPASSWORD=$PGPASSWORD  -p 8080:8080 transitclock-server  ./start_transitclock.sh

@@ -19,6 +19,6 @@ echo JAVA_OPTS $JAVA_OPTS
 
 /usr/local/tomcat/bin/startup.sh
 
-nohup java -Xss12m -Duser.timezone=EST -Dtransitime.configFiles=/usr/local/transitclock/config/transitckockConfig.xml -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.logging.dir=/usr/local/transitclock/logs/ -jar $TRANSITCLOCK_CORE/transitclock/target/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
+nohup java -Xss12m -Duser.timezone=EST -Dtransitime.configFiles=/usr/local/transitclock/config/transitclockConfig.xml -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.logging.dir=/usr/local/transitclock/logs/ -jar $TRANSITCLOCK_CORE/transitclock/target/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
 
 tail -f /dev/null
