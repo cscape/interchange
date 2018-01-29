@@ -20,7 +20,7 @@
 		<allowableLateSeconds>600</allowableLateSeconds>
     </autoBlockAssigner>
     <core>
-    	<predictionGeneratorClass>org.transitclock.core.predictiongenerator.kalman.KalmanPredictionGeneratorImpl</predictionGeneratorClass>
+    	<predictionGeneratorClass>org.transitclock.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>
     	<maxDistanceFromSegment>30000</maxDistanceFromSegment>
     	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
     </core>
