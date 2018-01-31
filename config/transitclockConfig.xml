@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<transitime>
+<transitclock>
     <modules>
         <!-- <optionalModulesList>org.transitime.core.schedBasedPreds.SchedBasedPredsModule;org.transitime.avl.GtfsRealtimeModule</optionalModulesList> -->
         <!-- GtfsRealtimeModule read a GTFS vehicle location feed as the source of AVL data. -->
@@ -7,6 +7,9 @@
         <!-- GTFSRealtimePredictionAccuracyModule is used to store an alternative source of predictions and again record there accuracy based on actual arrival/departure times -->
         <optionalModulesList>org.transitclock.avl.GtfsRealtimeModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule;org.transitclock.core.predAccuracy.gtfsrt.GTFSRealtimePredictionAccuracyModule</optionalModulesList>
     </modules>
+    <gtfs>
+    	<routeIdFilterRegEx>6</routeIdFilterRegEx>
+    </gtfs>
     <predAccuracy>
     	<pollingRateMsec>240000</pollingRateMsec>
     	<!-- This value is used by GTFSRealtimePredictionAccuracyModule to pick up feed to compare against transitime feed -->
@@ -54,10 +57,10 @@
         <dbPassword>PGPASSWORD</dbPassword>
     </db>
     <hibernate>
-        <configFile>/usr/local/transitclock/config/hibernate.cfg.xml</configFile>        
+        <configFile>/usr/local/transitclock/config/hibernate.cfg.xml</configFile>
     </hibernate>
     <web>
     	<mapTileUrl>http://tile.openstreetmap.org/{z}/{x}/{y}.png</mapTileUrl>
     	<mapTileCopyright>openstreetmap</mapTileCopyright>
     </web>
-</transitime>
+</transitclock>

@@ -10,7 +10,7 @@ docker rmi transitclock-server
 
 docker build -t transitclock-server \
 --build-arg TRANSITCLOCK_GITHUB="https://github.com/TheTransitClock/transitime.git" \
---build-arg TRANSITCLOCK_BRANCH="tc_issue_23" \
+--build-arg TRANSITCLOCK_BRANCH="tc_issue_37" \
 --build-arg TRANSITCLOCK_PROPERTIES="config/transitclockConfig.xml" \
 --build-arg AGENCYID="1" \
 --build-arg AGENCYNAME="CAPMETRO" \

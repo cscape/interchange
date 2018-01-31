@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<transitime>
+<transitclock>
     <modules>
     	<optionalModulesList>org.transitime.avl.PlaybackModule;org.transitime.core.predAccuracy.PlaybackPredictionAccuracyModule</optionalModulesList>
     </modules>
@@ -69,4 +69,4 @@ quency based services. -->
 	<web>
 		<mapTileUrl>http://tile.openstreetmap.org/{z}/{x}/{y}.png</mapTileUrl>
 	</web>
-</transitime>
+</transitclock>
