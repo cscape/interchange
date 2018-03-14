@@ -10,15 +10,15 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITI
 rmiregistry &
 
 #set the API as an environment variable so we can set in JSP of template/includes.jsp in the transitime webapp
-export APIKEY=$(/get_api_key.sh)
+export APIKEY=$(get_api_key.sh)
 
 # make it so we can also access as a system property in the JSP
-export JAVA_OPTS="$JAVA_OPTS -Dtransitclock.apikey=$(/get_api_key.sh)"
+export JAVA_OPTS="$JAVA_OPTS -Dtransitclock.apikey=$(get_api_key.sh)"
 
 echo JAVA_OPTS $JAVA_OPTS
 
 /usr/local/tomcat/bin/startup.sh
 
-nohup java -Xss12m -Duser.timezone=EST -Dtransitclock.configFiles=/usr/local/transitclock/config/transitclockConfig.xml -Dtransitclock.core.agencyId=$AGENCYID -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ -jar $TRANSITCLOCK_CORE/transitclock/target/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
+nohup java -Xss12m -Duser.timezone=EST -Dtransitclock.configFiles=/usr/local/transitclock/config/transitclockConfig.xml -Dtransitclock.core.agencyId=$AGENCYID -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ -jar /usr/local/transitclock/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
 
 tail -f /dev/null
