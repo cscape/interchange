@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transitclock>
-    <modules>
-        <!-- <optionalModulesList>org.transitime.core.schedBasedPreds.SchedBasedPredsModule;org.transitime.avl.GtfsRealtimeModule</optionalModulesList> -->
-        <!-- GtfsRealtimeModule read a GTFS vehicle location feed as the source of AVL data. -->
-        <!-- PredictionAccuracyModule is used to store the transiTime prediction and record their accuracy. Look in class for comments explaining detail. -->
-        <!-- GTFSRealtimePredictionAccuracyModule is used to store an alternative source of predictions and again record there accuracy based on actual arrival/departure times -->
-        <optionalModulesList>org.transitclock.avl.NextBusAvlModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>
+    <modules>    
+        <optionalModulesList>org.transitclock.custom.mbta.BusLocAvlModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>
     </modules>
-    <predAccuracy>
-    	<pollingRateMsec>240000</pollingRateMsec>
-    	<!-- This value is used by GTFSRealtimePredictionAccuracyModule to pick up feed to compare against transitime feed -->
-    	<gtfsTripUpdateUrl>http://realtime.prod.obahart.org:8088/trip-updates</gtfsTripUpdateUrl>
-    </predAccuracy>
+ <gtfs>
+        <routeIdFilterRegEx>77</routeIdFilterRegEx>
+    </gtfs>
 
     <autoBlockAssigner>
 		<autoAssignerEnabled>true</autoAssignerEnabled>
@@ -43,10 +37,8 @@
         <maxLongitude>-97.495917</maxLongitude>
          -->
 
-        <feedPollingRateSecs>30</feedPollingRateSecs>
-        <nextbus>
-          <agencyNameForFeed>atlanta-sc</agencyNameForFeed>
-       </nextbus>
+        <feedPollingRateSecs>10</feedPollingRateSecs>
+
     </avl>
     <db>
         <dbName>AGENCYNAME</dbName>
