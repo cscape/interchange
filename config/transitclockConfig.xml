@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transitclock>
     <modules>    
-        <optionalModulesList>org.transitclock.custom.mbta.BusLocAvlModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>
+        <optionalModulesList>org.transitclock.custom.mbta.HighFreqAvlModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>
     </modules>
- <gtfs>
-        <routeIdFilterRegEx>77</routeIdFilterRegEx>
-    </gtfs>
-
     <autoBlockAssigner>
 		<autoAssignerEnabled>true</autoAssignerEnabled>
 		<ignoreAvlAssignments>false</ignoreAvlAssignments>
@@ -15,30 +11,13 @@
     </autoBlockAssigner>
     <core>
     	<predictionGeneratorClass>org.transitclock.core.PredictionGeneratorDefaultImpl</predictionGeneratorClass>
-    	<maxDistanceFromSegment>30000</maxDistanceFromSegment>
     	<holdingTimeGeneratorClass></holdingTimeGeneratorClass>
     </core>
     <avl>
         <!-- URL for GTFS realtime vechicle location stream. Changed name in versions do use both for the moment. -->
         <gtfsRealtimeFeedURI>GTFSRTVEHICLEPOSITIONS</gtfsRealtimeFeedURI>
-		<url>GTFSRTVEHICLEPOSITIONS</url>
-		<!--  These are the values used for Irish Rail. -->
-        <!-- <minLongitude>-10.725</minLongitude>
-        <maxLongitude>-5.35</maxLongitude>
-        <minLatitude>51.35</minLatitude>
-        <maxLatitude>55.45</maxLatitude>
-         -->
-        <!--  defaults are for north america so only need this if we are not using data from there. -->
-        <!--  These are the values used for CAPMETRO in Austin, Texas. -->
-        <!-- <minLatitude>30.145125</minLatitude>
-        <maxLatitude>30.517681</maxLatitude>
-
-        <minLongitude>-98.072043</minLongitude>
-        <maxLongitude>-97.495917</maxLongitude>
-         -->
-
-        <feedPollingRateSecs>10</feedPollingRateSecs>
-
+	<url>GTFSRTVEHICLEPOSITIONS</url>
+        <feedPollingRateSecs>8</feedPollingRateSecs>
     </avl>
     <db>
         <dbName>AGENCYNAME</dbName>
