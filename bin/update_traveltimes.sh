@@ -7,4 +7,4 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPAS
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
-java -Xmx2048m -Xss12m -Duser.timezone=EST -Dtransitime.configFiles=/usr/local/transitclock/config/test/transitclockConfig1.xml -Dtransitime.core.agencyId=$AGENCYID -Dtransitime.logging.dir=/usr/local/transitclock/logs/ -jar /usr/local/transitclock/UpdateTravelTimes.jar $1 $2
+java -Xmx2048m -Xss12m -Dtransitclock.configFiles=/usr/local/transitclock/config/transitclockConfig.xml -Dtransitclock.core.agencyId=1 -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ -cp /usr/local/transitclock/Core.jar org.transitclock.applications.UpdateTravelTimes $1 $2
