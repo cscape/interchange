@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transitclock>
-    <modules>    
+    <modules>
         <optionalModulesList>org.transitclock.custom.mbta.HighFreqAvlModule;org.transitclock.core.predAccuracy.PredictionAccuracyModule</optionalModulesList>
     </modules>
+    <gtfs><routeIdFilterRegEx>36</routeIdFilterRegEx></gtfs>
     <autoBlockAssigner>
 		<autoAssignerEnabled>true</autoAssignerEnabled>
 		<ignoreAvlAssignments>false</ignoreAvlAssignments>
@@ -18,6 +19,7 @@
         <gtfsRealtimeFeedURI>GTFSRTVEHICLEPOSITIONS</gtfsRealtimeFeedURI>
 	<url>GTFSRTVEHICLEPOSITIONS</url>
         <feedPollingRateSecs>8</feedPollingRateSecs>
+	<testroute>36</testroute>
     </avl>
     <db>
         <dbName>AGENCYNAME</dbName>
