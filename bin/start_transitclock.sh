@@ -15,6 +15,8 @@ export APIKEY=$(get_api_key.sh)
 # make it so we can also access as a system property in the JSP
 export JAVA_OPTS="$JAVA_OPTS -Dtransitclock.apikey=$(get_api_key.sh)"
 
+export JAVA_OPTS="$JAVA_OPTS -Dtransitclock.configFiles=/usr/local/transitclock/config/transitclockConfig.xml"
+
 echo JAVA_OPTS $JAVA_OPTS
 
 /usr/local/tomcat/bin/startup.sh
