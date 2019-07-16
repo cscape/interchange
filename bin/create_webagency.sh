@@ -4,11 +4,11 @@ echo 'THETRANSITCLOCK DOCKER: Create WebAgency.'
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_ADDR"#"$POSTGRES_PORT_5432_TCP_ADDR"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_PORT"#"$POSTGRES_PORT_5432_TCP_PORT"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g {} \;
-find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
+find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYID"#"$AGENCYID"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
 java \
-  -Dtransitclock.db.dbName="TC_AGENCY_${AGENCYNAME}" \
+  -Dtransitclock.db.dbName="TC_AGENCY_${AGENCYID}" \
   -Dtransitclock.hibernate.configFile=/usr/local/transitclock/config/hibernate.cfg.xml \
   -Dtransitclock.db.dbHost="${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}" \
   -Dtransitclock.db.dbUserName="postgres" \
@@ -17,7 +17,7 @@ java \
   -cp /usr/local/transitclock/Core.jar org.transitclock.db.webstructs.WebAgency \
   "${AGENCYID}" \
   127.0.0.1 \
-  "TC_AGENCY_${AGENCYNAME}" \
+  "TC_AGENCY_${AGENCYID}" \
   postgresql \
   $POSTGRES_PORT_5432_TCP_ADDR \
   postgres \

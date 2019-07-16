@@ -1,13 +1,11 @@
 FROM openjdk:8-jre
 
 ARG AGENCYID="1"
-ARG AGENCYNAME="GOHART"
 ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
 ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
 ARG TRANSITCLOCK_PROPERTIES="config/agency.properties"
 
 ENV AGENCYID ${AGENCYID}
-ENV AGENCYNAME ${AGENCYNAME}
 ENV GTFS_URL ${GTFS_URL}
 ENV GTFSRTVEHICLEPOSITIONS ${GTFSRTVEHICLEPOSITIONS}
 ENV TRANSITCLOCK_PROPERTIES ${TRANSITCLOCK_PROPERTIES}
@@ -66,7 +64,6 @@ RUN sed -i 's/\r//' /usr/local/transitclock/bin/*.sh
 RUN chmod 777 /usr/local/transitclock/bin/*.sh
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
-ADD ${TRANSITCLOCK_PROPERTIES} /usr/local/transitclock/config/agency.properties
 
 EXPOSE 8080
 

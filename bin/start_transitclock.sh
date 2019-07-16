@@ -4,7 +4,7 @@ echo 'THETRANSITCLOCK DOCKER: Start TheTransitClock.'
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_ADDR"#"$POSTGRES_PORT_5432_TCP_ADDR"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_PORT"#"$POSTGRES_PORT_5432_TCP_PORT"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g {} \;
-find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
+find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYID"#"$AGENCYID"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
 rmiregistry &
@@ -21,6 +21,6 @@ echo JAVA_OPTS $JAVA_OPTS
 
 /usr/local/tomcat/bin/startup.sh
 
-nohup java -Xss12m -Duser.timezone=EST -Dtransitclock.configFiles=/usr/local/transitclock/config/agency.properties -Dtransitclock.core.agencyId=$AGENCYID -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ -jar /usr/local/transitclock/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
+nohup java -Xss12m -Duser.timezone=EST -Dtransitclock.configFiles=/usr/local/transitclock/config/agency.properties -Dtransitclock.core.agencyId="${AGENCYID}" -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ -jar /usr/local/transitclock/Core.jar -configRev 0 > /usr/local/transitclock/logs/output.txt &
 
 tail -f /dev/null
