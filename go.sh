@@ -9,7 +9,7 @@ docker rm transitclock-server-instance
 docker rmi transitclock-server
 
 docker build --no-cache -t transitclock-server \
---build-arg TRANSITCLOCK_PROPERTIES="config/transitclockConfig.xml" \
+--build-arg TRANSITCLOCK_PROPERTIES="config/agency.properties" \
 --build-arg AGENCYID="1" \
 --build-arg AGENCYNAME="MBTA" \
 --build-arg GTFS_URL="https://cdn.mbta.com/MBTA_GTFS.zip" \
