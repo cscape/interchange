@@ -1,3 +1,4 @@
+#!/bin/bash
 export PGPASSWORD=transitclock
 export PGUSERNAME=postgres
 Tempagencyid=halifax
