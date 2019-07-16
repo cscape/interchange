@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Create API key.'
+AGENCYID="${AGENCYID}" . substitute.sh
 
 java \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey \

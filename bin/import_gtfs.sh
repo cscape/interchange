@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Import GTFS file.'
+AGENCYID="${AGENCYID}" . substitute.sh
 
 java \
   -Xmx1024M \
   -Dtransitclock.core.agencyId="${AGENCYID}" \
   -Dtransitclock.configFiles="${TC_PROPERTIES}" \
-  -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ \
+  -Dtransitclock.logging.dir="/usr/local/transitclock/logs/" \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.GtfsFileProcessor \
   -gtfsUrl "${GTFS_URL}" \
   -maxTravelTimeSegmentLength 100

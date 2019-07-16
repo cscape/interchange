@@ -13,6 +13,6 @@ java \
   127.0.0.1 \
   "TC_AGENCY_${AGENCYID}" \
   postgresql \
-  $POSTGRES_PORT_5432_TCP_ADDR \
+  "${POSTGRES_PORT_5432_TCP_ADDR}" \
   postgres \
-  $PGPASSWORD
+  "${PGPASSWORD}"
