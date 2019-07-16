@@ -91,7 +91,6 @@ ADD bin/create_webagency.sh /usr/local/transitclock/bin/create_webagency.sh
 ADD bin/import_gtfs.sh /usr/local/transitclock/bin/import_gtfs.sh
 ADD bin/start_transitclock.sh /usr/local/transitclock/bin/start_transitclock.sh
 ADD bin/get_api_key.sh /usr/local/transitclock/bin/get_api_key.sh
-ADD bin/update_traveltimes.sh /usr/local/transitclock/bin/update_traveltimes.sh
 
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
