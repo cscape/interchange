@@ -16,6 +16,7 @@ ENV TRANSITCLOCK_CORE /transitclock-core
 
 RUN apt-get update
 RUN apt-get install -y postgresql-client
+RUN apt-get install -y wget
 RUN apt-get install -y openjdk-8-jdk
 
 # TOMCAT CONFIG
