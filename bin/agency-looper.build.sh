@@ -13,7 +13,7 @@ K=0
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
-  NEW_CONFIG_PATH="${__CONFIGPATH}/${ID}.properties"
+  NEW_CONFIG_PATH="/usr/local/transitclock/config/${ID}.properties"
 
   # Copy generic props file to new one
   cp -n "${__GENERIC}" "${NEW_CONFIG_PATH}"
