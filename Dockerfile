@@ -1,4 +1,4 @@
-FROM maven:3.3-jdk-8
+FROM phusion/baseimage:0.11
 MAINTAINER Nathan Walker <nathan@rylath.net>, Sean Óg Crudden <og.crudden@gmail.com>
 
 ARG AGENCYID="1"
@@ -19,6 +19,10 @@ RUN apt-get update \
 	&& apt-get install -y postgresql-client \
 	&& apt-get install -y git-core \
 	&& apt-get install -y vim
+
+
+  RUN apt-get install -y wget
+  RUN apt-get install -y openjdk-8-jdk
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
@@ -41,7 +45,7 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys \
 	F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23
 
 ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.0.43
+ENV TOMCAT_VERSION 8.5.42
 ENV TOMCAT_TGZ_URL https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
@@ -106,7 +110,7 @@ ADD data/gtfs_hart_old.zip /usr/local/transitclock/data/gtfs_hart_old.zip
 
 RUN \
 	sed -i 's/\r//' /usr/local/transitclock/bin/*.sh &&\
- 	chmod 777 /usr/local/transitclock/bin/*.sh
+        chmod 777 /usr/local/transitclock/bin/*.sh
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
 ADD ${TRANSITCLOCK_PROPERTIES} /usr/local/transitclock/config/transitclockConfig.xml
