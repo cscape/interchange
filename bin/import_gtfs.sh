@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Import GTFS file.'
-AGENCYID="${AGENCYID}" . substitute.sh
+. substitute.sh
 
 java \
   -Xmx1024M \

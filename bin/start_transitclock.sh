@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Start TheTransitClock.'
-AGENCYID="${AGENCYID}" . substitute.sh
+. substitute.sh
 
 rmiregistry &
 
