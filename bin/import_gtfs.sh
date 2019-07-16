@@ -10,9 +10,8 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITI
 java \
   -Xmx1024M \
   -Dtransitclock.core.agencyId="${AGENCYID}" \
-  -Dtransitclock.configFiles=/usr/local/transitclock/config/agency.properties \
+  -Dtransitclock.configFiles="${TC_PROPERTIES}" \
   -Dtransitclock.logging.dir=/usr/local/transitclock/logs/ \
-  -Dlogback.configurationFile="${TRANSITCLOCK_CORE}/transitclock/src/main/resouces/logbackGtfs.xml" \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.GtfsFileProcessor \
   -gtfsUrl "${GTFS_URL}" \
   -maxTravelTimeSegmentLength 100

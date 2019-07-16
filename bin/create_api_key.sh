@@ -9,7 +9,7 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITI
 
 java \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey \
-  -c "/usr/local/transitclock/config/agency.properties" \
+  -c "${TC_PROPERTIES}" \
   -d "foo" \
   -e "og.crudden@gmail.com" \
   -n "Sean Og Crudden" \

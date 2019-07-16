@@ -9,7 +9,7 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITI
 
 java \
   -Dtransitclock.db.dbName="TC_AGENCY_${AGENCYID}" \
-  -Dtransitclock.hibernate.configFile=/usr/local/transitclock/config/hibernate.cfg.xml \
+  -Dtransitclock.hibernate.configFile="/usr/local/transitclock/config/hibernate.cfg.xml" \
   -Dtransitclock.db.dbHost="${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}" \
   -Dtransitclock.db.dbUserName="postgres" \
   -Dtransitclock.db.dbPassword="${PGPASSWORD}" \
