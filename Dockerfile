@@ -93,9 +93,6 @@ ADD bin/start_transitclock.sh /usr/local/transitclock/bin/start_transitclock.sh
 ADD bin/get_api_key.sh /usr/local/transitclock/bin/get_api_key.sh
 ADD bin/update_traveltimes.sh /usr/local/transitclock/bin/update_traveltimes.sh
 
-# Handy utility to allow you connect directly to database
-ADD bin/connect_to_db.sh /usr/local/transitclock/bin/connect_to_db.sh
-
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
 RUN \
