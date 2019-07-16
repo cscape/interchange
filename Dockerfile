@@ -102,9 +102,6 @@ ADD bin/connect_to_db.sh /usr/local/transitclock/bin/connect_to_db.sh
 
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
-# This is a way to copy in test data to run a regression test.
-ADD data/gtfs_hart_old.zip /usr/local/transitclock/data/gtfs_hart_old.zip
-
 RUN \
 	sed -i 's/\r//' /usr/local/transitclock/bin/*.sh &&\
         chmod 777 /usr/local/transitclock/bin/*.sh
