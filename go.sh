@@ -33,7 +33,7 @@ docker build --no-cache -t transitclock-server .
 docker run \
   --name transitclock-server-instance \
   --rm \
-  --link transitclock-db:postgres \
+  # --link transitclock-db:postgres \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
   substitute.sh
@@ -41,7 +41,7 @@ docker run \
 docker run \
   --name transitclock-server-instance \
   --rm \
-  --link transitclock-db:postgres \
+  # --link transitclock-db:postgres \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
   show-config.sh
