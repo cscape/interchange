@@ -36,14 +36,14 @@ docker run \
   --rm \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
-  substitute.sh
+  show-config.sh
 
 docker run \
   --name transitclock-server-instance \
   --rm \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
-  show-config.sh
+  show-config-norun.sh
 
 # docker run \
 #   --name transitclock-server-instance \
