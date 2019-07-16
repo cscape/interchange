@@ -1,7 +1,7 @@
 export PGPASSWORD=transitclock
 export PGUSERNAME=postgres
-export Tempagencyid=halifax
-export TempProperties="/usr/local/transitclock/config/agency.properties"
+Tempagencyid=halifax
+TempProperties="/usr/local/transitclock/config/halifax.properties"
 
 docker stop transitclock-db && docker stop transitclock-server-instance
 docker rm transitclock-db && docker rm transitclock-server-instance
