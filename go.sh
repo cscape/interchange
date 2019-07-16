@@ -42,7 +42,6 @@ docker run \
 # Starts Tomcat and TransitClock cores
 docker run \
   --name transitclock-server-instance \
-  --rm \
   --link transitclock-db:postgres \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e PGUSERNAME="${PGUSERNAME}" \
