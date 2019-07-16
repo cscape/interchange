@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Create WebAgency.'
-# This is to substitute into config file the env values
-find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_ADDR"#"$POSTGRES_PORT_5432_TCP_ADDR"#g {} \;
-find /usr/local/transitclock/config/ -type f -exec sed -i s#"POSTGRES_PORT_5432_TCP_PORT"#"$POSTGRES_PORT_5432_TCP_PORT"#g {} \;
-find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPASSWORD"#g {} \;
 
 java \
   -Dtransitclock.db.dbName="TC_AGENCY_${AGENCYID}" \

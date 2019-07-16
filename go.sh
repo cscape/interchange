@@ -1,6 +1,7 @@
 export PGPASSWORD=transitclock
 export PGUSERNAME=postgres
 export Tempagencyid=halifax
+export TempProperties="/usr/local/transitclock/config/agency.properties"
 
 docker stop transitclock-db && docker stop transitclock-server-instance
 docker rm transitclock-db && docker rm transitclock-server-instance
@@ -36,6 +37,15 @@ docker run \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
+  substitute.sh
+
+docker run \
+  --name transitclock-server-instance \
+  --rm \
+  --link transitclock-db:postgres \
+  -e PGPASSWORD="${PGPASSWORD}" \
+  -e AGENCYID="${Tempagencyid}" \
+  transitclock-server \
   create_tables.sh
 
 docker run \
@@ -44,7 +54,7 @@ docker run \
   --link transitclock-db:postgres \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e AGENCYID="${Tempagencyid}" \
-  -e TC_PROPERTIES="/usr/local/transitclock/config/agency.properties" \
+  -e TC_PROPERTIES="${TempProperties}" \
   -e GTFS_URL="http://gtfs.halifax.ca/static/google_transit.zip" \
   transitclock-server \
   import_gtfs.sh
@@ -54,7 +64,7 @@ docker run \
   --rm \
   --link transitclock-db:postgres \
   -e PGPASSWORD="${PGPASSWORD}" \
-  -e TC_PROPERTIES="/usr/local/transitclock/config/agency.properties" \
+  -e TC_PROPERTIES="${TempProperties}" \
   transitclock-server \
   create_api_key.sh
 
@@ -63,7 +73,7 @@ docker run \
   --rm \
   --link transitclock-db:postgres \
   -e PGPASSWORD="${PGPASSWORD}" \
-  -e AGENCYID="$Tempagencyid" \
+  -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
   create_webagency.sh
 
@@ -74,8 +84,8 @@ docker run \
   --link transitclock-db:postgres \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e PGUSERNAME="${PGUSERNAME}" \
-  -e TC_PROPERTIES="/usr/local/transitclock/config/agency.properties" \
-  -e AGENCYID="$Tempagencyid" \
+  -e TC_PROPERTIES="${TempProperties}" \
+  -e AGENCYID="${Tempagencyid}" \
   -p 3020:8080 \
   transitclock-server \
   start_transitclock.sh
