@@ -72,8 +72,6 @@ RUN mkdir /usr/local/transitclock/config
 RUN mkdir /usr/local/transitclock/logs
 RUN mkdir /usr/local/transitclock/cache
 RUN mkdir /usr/local/transitclock/data
-RUN mkdir /usr/local/transitclock/test
-RUN mkdir /usr/local/transitclock/test/config
 
 WORKDIR /usr/local/transitclock
 
@@ -105,7 +103,6 @@ ADD bin/connect_to_db.sh /usr/local/transitclock/bin/connect_to_db.sh
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
 # This is a way to copy in test data to run a regression test.
-ADD data/avl.csv /usr/local/transitclock/data/avl.csv
 ADD data/gtfs_hart_old.zip /usr/local/transitclock/data/gtfs_hart_old.zip
 
 RUN \
@@ -114,9 +111,6 @@ RUN \
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
 ADD ${TRANSITCLOCK_PROPERTIES} /usr/local/transitclock/config/transitclockConfig.xml
-
-# This adds the transitime configs to test.
-ADD config/test/* /usr/local/transitclock/config/test/
 
 EXPOSE 8080
 
