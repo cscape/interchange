@@ -42,5 +42,3 @@ RUN find /usr/local/transitclock -type f -print0 | xargs -0 chmod 777
 RUN . agency-looper.build.sh
 
 EXPOSE 8080
-
-CMD ["/start_transitclock.sh"]
