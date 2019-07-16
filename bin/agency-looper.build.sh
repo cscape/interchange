@@ -7,7 +7,7 @@ echo 'Starting agency looper'
 # the POSTGRES variables at runtime. 
 
 __CONFIGPATH="/usr/local/transitclock/agencies"
-__GENERIC="/usr/local/transitclock/agencies/__generic.properties"
+__GENERIC="/usr/local/transitclock/config/__generic.properties"
 
 
 for filename in /usr/local/transitclock/agencies/*.env; do
