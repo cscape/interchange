@@ -7,7 +7,6 @@ K=0
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
-  TC_PROPERTIES="/usr/local/transitclock/config/${ID}.properties"
   AGENCYID="${ID}"
   GTFS_URL="${GTFS}"
   SECONDARY_RMI="-Dtransitclock.rmi.secondaryRmiPort=0"
@@ -15,7 +14,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 
   if [ $K -eq 0 ]; then
     # Start Tomcat using the 1st agency's API key
-    AGENCYID="${AGENCYID}" . start_tomcat.sh
+    AGENCYID="${ID}" . start_tomcat.sh
     SECONDARY_RMISTATUS=false
   fi
 
@@ -24,7 +23,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     SECONDARY_RMI=""
   fi
 
-  TC_PROPERTIES="${TC_PROPERTIES}" SECONDARY_RMI="${SECONDARY_RMI}" . start_core.sh
+  AGENCYID="${ID}" SECONDARY_RMI="${SECONDARY_RMI}" . start_core.sh
 
   K=$((K + 1))
 done

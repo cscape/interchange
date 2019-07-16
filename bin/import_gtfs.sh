@@ -5,7 +5,7 @@ echo 'THETRANSITCLOCK DOCKER: Import GTFS file.'
 java \
   -Xmx1024M \
   -Dtransitclock.core.agencyId="${AGENCYID}" \
-  -Dtransitclock.configFiles="${TC_PROPERTIES}" \
+  -Dtransitclock.configFiles="/usr/local/transitclock/config/${AGENCYID}.properties" \
   -Dtransitclock.logging.dir="/usr/local/transitclock/logs/" \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.GtfsFileProcessor \
   -gtfsUrl "${GTFS_URL}" \

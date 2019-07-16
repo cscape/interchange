@@ -7,17 +7,16 @@ K=0
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
-  TC_PROPERTIES="/usr/local/transitclock/config/${ID}.properties"
   AGENCYID="${ID}"
   GTFS_URL="${GTFS}"
 
-  AGENCYID="${AGENCYID}" . create_tables.sh
-  AGENCYID="${AGENCYID}" TC_PROPERTIES="${TC_PROPERTIES}" GTFS_URL="${GTFS_URL}" . import_gtfs.sh
-  AGENCYID="${AGENCYID}" . create_webagency.sh
+  AGENCYID="${ID}" . create_tables.sh
+  AGENCYID="${ID}" GTFS_URL="${GTFS_URL}" . import_gtfs.sh
+  AGENCYID="${ID}" . create_webagency.sh
   if [ $K -eq 0 ]
   then
     # Only run Create API Key on the primary agency
-    TC_PROPERTIES="${TC_PROPERTIES}" . create_api_key.sh
+    AGENCYID="${ID}" . create_api_key.sh
   fi
   K=$((K + 1))
 done

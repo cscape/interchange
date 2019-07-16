@@ -7,9 +7,9 @@ echo 'THETRANSITCLOCK DOCKER: Create API key.'
 
 java \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey \
-  -c "${TC_PROPERTIES}" \
-  -d "foo" \
-  -e "og.crudden@gmail.com" \
+  -c "/usr/local/transitclock/config/${AGENCYID}.properties" \
   -n "Sean Og Crudden" \
+  -u "http://www.transitclock.org" \
+  -e "og.crudden@gmail.com" \
   -p "123456" \
-  -u "http://www.transitclock.org"
+  -d "foo"
