@@ -17,8 +17,8 @@ java \
   -maxTravelTimeSegmentLength 100
 
 psql \
-  -h "$POSTGRES_PORT_5432_TCP_ADDR" \
-  -p "$POSTGRES_PORT_5432_TCP_PORT" \
+  -h "${POSTGRES_PORT_5432_TCP_ADDR}" \
+  -p "${POSTGRES_PORT_5432_TCP_PORT}" \
   -U postgres \
   -d "TC_AGENCY_${AGENCYID}" \
   -c "update activerevisions set configrev=0 where configrev = -1; update activerevisions set traveltimesrev=0 where traveltimesrev = -1;"
