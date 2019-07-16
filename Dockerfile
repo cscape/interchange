@@ -26,7 +26,7 @@ WORKDIR /
 RUN mkdir /usr/local/transitclock
 WORKDIR /usr/local/transitclock
 ADD . /usr/local/transitclock
-RUN mkdir db cache logs config data
+RUN mkdir db cache logs data
 
 RUN curl -s https://api.github.com/repos/TheTransitClock/transitime/releases/latest | jq -r ".assets[].browser_download_url" | grep 'Core.jar\|api.war\|web.war' | xargs -L1 wget
 
