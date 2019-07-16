@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Create API key.'
+set -u
 . substitute.sh
 
 # ONLY CREATE THIS API KEY
@@ -7,7 +8,7 @@ echo 'THETRANSITCLOCK DOCKER: Create API key.'
 
 java \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey \
-  -c "/usr/local/transitclock/config/${AGENCYID}.properties" \
+  -c "\"/usr/local/transitclock/config/${AGENCYID}.properties\"" \
   -n "Sean Og Crudden" \
   -u "http://www.transitclock.org" \
   -e "og.crudden@gmail.com" \
