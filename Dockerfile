@@ -54,15 +54,9 @@ RUN set -x \
 	&& rm bin/*.bat \
 	&& rm tomcat.tar.gz*
 
-EXPOSE 8080
-
-
 # Install json parser so we can read API key for CreateAPIKey output
-
 RUN wget http://stedolan.github.io/jq/download/linux64/jq
-
 RUN chmod +x ./jq
-
 RUN cp jq /usr/bin/
 
 WORKDIR /
