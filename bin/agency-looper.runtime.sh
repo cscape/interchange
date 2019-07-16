@@ -6,7 +6,7 @@ K=0
 # Load in each agency & loop
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
-  source $filename
+  . "${filename}"
   TC_PROPERTIES="/usr/local/transitclock/config/${ID}.properties"
   AGENCYID="${ID}"
   GTFS_URL="${GTFS}"
@@ -19,7 +19,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     # Only run Create API Key on the primary agency
     TC_PROPERTIES="${TC_PROPERTIES}" . create_api_key.sh
   fi
-  ((K++))
+  K=$((K + 1))
 done
 
 echo 'Finished agency looper for setting up agencies'

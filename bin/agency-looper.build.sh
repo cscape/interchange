@@ -12,7 +12,7 @@ K=0
 
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
-  source $filename
+  . "${filename}"
   NEW_CONFIG_PATH="${__CONFIGPATH}/${ID}.properties"
 
   # Copy generic props file to new one
@@ -31,7 +31,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     # Secondary core, replace with random RMI port
     sed -i "s|*SECONDARYRMI|transitclock.rmi.secondaryRmiPort=0|g" "${NEW_CONFIG_PATH}"
   fi
-  ((K++))
+  K=$((K + 1))
 done
 
 # Delete the generic template since it's no longer needed

@@ -6,7 +6,7 @@ K=0
 # Load in each agency & loop
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
-  source $filename
+  . "${filename}"
   TC_PROPERTIES="/usr/local/transitclock/config/${ID}.properties"
   AGENCYID="${ID}"
   GTFS_URL="${GTFS}"
@@ -26,7 +26,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 
   TC_PROPERTIES="${TC_PROPERTIES}" SECONDARY_RMI="${SECONDARY_RMI}" . start_core.sh
 
-  ((K++))
+  K=$((K + 1))
 done
 
 echo 'Finished starting up all TransitClock agencies'
