@@ -85,15 +85,12 @@ RUN mv web.war  /usr/local/tomcat/webapps
 
 # Scripts required to start transiTime.
 ADD bin/check_db_up.sh /usr/local/transitclock/bin/check_db_up.sh
-ADD bin/generate_sql.sh /usr/local/transitclock/bin/generate_sql.sh
 ADD bin/create_tables.sh /usr/local/transitclock/bin/create_tables.sh
 ADD bin/create_api_key.sh /usr/local/transitclock/bin/create_api_key.sh
 ADD bin/create_webagency.sh /usr/local/transitclock/bin/create_webagency.sh
 ADD bin/import_gtfs.sh /usr/local/transitclock/bin/import_gtfs.sh
 ADD bin/start_transitclock.sh /usr/local/transitclock/bin/start_transitclock.sh
 ADD bin/get_api_key.sh /usr/local/transitclock/bin/get_api_key.sh
-ADD bin/import_avl.sh /usr/local/transitclock/bin/import_avl.sh
-ADD bin/process_avl.sh /usr/local/transitclock/bin/process_avl.sh
 ADD bin/update_traveltimes.sh /usr/local/transitclock/bin/update_traveltimes.sh
 ADD bin/set_config.sh /usr/local/transitclock/bin/set_config.sh
 
