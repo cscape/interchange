@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.11
+FROM openjdk:8-jre
 
 ARG AGENCYID="1"
 ARG AGENCYNAME="GOHART"
