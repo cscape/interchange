@@ -48,21 +48,13 @@ RUN mv api.war  /usr/local/tomcat/webapps
 # Deploy webapp which is a UI based on the API.
 RUN mv web.war  /usr/local/tomcat/webapps
 
-# Scripts required to start transiTime.
-ADD bin/check_db_up.sh /usr/local/transitclock/bin/check_db_up.sh
-ADD bin/create_tables.sh /usr/local/transitclock/bin/create_tables.sh
-ADD bin/create_api_key.sh /usr/local/transitclock/bin/create_api_key.sh
-ADD bin/create_webagency.sh /usr/local/transitclock/bin/create_webagency.sh
-ADD bin/import_gtfs.sh /usr/local/transitclock/bin/import_gtfs.sh
-ADD bin/start_transitclock.sh /usr/local/transitclock/bin/start_transitclock.sh
-ADD bin/get_api_key.sh /usr/local/transitclock/bin/get_api_key.sh
+# Add whole base into Docker
+ADD . /usr/local/transitclock
 
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
 RUN sed -i 's/\r//' /usr/local/transitclock/bin/*.sh
 RUN chmod 777 /usr/local/transitclock/bin/*.sh
-
-ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
 
 EXPOSE 8080
 
