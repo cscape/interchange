@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-ConfigPropsFile="/usr/local/transitclock/config/${AGENCYID}.properties"
-echo "Setting substitutes for ${AGENCYID} at $ConfigPropsFile"
+echo "Setting substitutes..."
 
-# This is to substitute into config file the env values.
-sed -i "s|POSTGRES_PORT_5432_TCP_ADDR|${POSTGRES_PORT_5432_TCP_ADDR}|g" "$ConfigPropsFile"
-sed -i "s|POSTGRES_PORT_5432_TCP_PORT|${POSTGRES_PORT_5432_TCP_PORT}|g" "$ConfigPropsFile"
-sed -i "s|PGPASSWORD|${PGPASSWORD}|g" "$ConfigPropsFile"
-sed -i "s|DATABASE_NAME|TC_AGENCY_${AGENCYID}|g" "$ConfigPropsFile"
+for filename in /usr/local/transitclock/config/*.properties; do
+  [ -e "$filename" ] || continue
+  sed -i "s|*POSTGRES_PORT_5432_TCP_ADDR|${POSTGRES_PORT_5432_TCP_ADDR}|g" "$filename"
+  sed -i "s|*POSTGRES_PORT_5432_TCP_PORT|${POSTGRES_PORT_5432_TCP_PORT}|g" "$filename"
+  sed -i "s|*PGPASSWORD|${PGPASSWORD}|g" "$filename"
+done
 
-echo "Finished setting substitutes for ${AGENCYID}"
+echo "Finished setting substitutes"
