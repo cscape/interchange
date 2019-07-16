@@ -1,5 +1,4 @@
 FROM phusion/baseimage:0.11
-MAINTAINER Nathan Walker <nathan@rylath.net>, Sean Óg Crudden <og.crudden@gmail.com>
 
 ARG AGENCYID="1"
 ARG AGENCYNAME="GOHART"
@@ -46,7 +45,7 @@ RUN mkdir /usr/local/transitclock/data
 
 WORKDIR /usr/local/transitclock
 
-RUN  curl -s https://api.github.com/repos/TheTransitClock/transitime/releases/latest | jq -r ".assets[].browser_download_url" | grep 'Core.jar\|api.war\|web.war' | xargs -L1 wget
+RUN curl -s https://api.github.com/repos/TheTransitClock/transitime/releases/latest | jq -r ".assets[].browser_download_url" | grep 'Core.jar\|api.war\|web.war' | xargs -L1 wget
 
 # Deploy API which talks to core using RMI calls.
 RUN mv api.war  /usr/local/tomcat/webapps
@@ -65,9 +64,8 @@ ADD bin/get_api_key.sh /usr/local/transitclock/bin/get_api_key.sh
 
 ENV PATH="/usr/local/transitclock/bin:${PATH}"
 
-RUN \
-	sed -i 's/\r//' /usr/local/transitclock/bin/*.sh &&\
-        chmod 777 /usr/local/transitclock/bin/*.sh
+RUN sed -i 's/\r//' /usr/local/transitclock/bin/*.sh
+RUN chmod 777 /usr/local/transitclock/bin/*.sh
 
 ADD config/postgres_hibernate.cfg.xml /usr/local/transitclock/config/hibernate.cfg.xml
 ADD ${TRANSITCLOCK_PROPERTIES} /usr/local/transitclock/config/agency.properties
