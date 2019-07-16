@@ -8,18 +8,18 @@ createdb \
   -h "${POSTGRES_PORT_5432_TCP_ADDR}" \
   -p "${POSTGRES_PORT_5432_TCP_PORT}" \
   -U postgres \
-  "TC_AGENCY_${AGENCYID}"
+  "agency-${AGENCYID}"
 
 psql \
   -h "${POSTGRES_PORT_5432_TCP_ADDR}" \
   -p "${POSTGRES_PORT_5432_TCP_PORT}" \
   -U postgres \
-  -d "TC_AGENCY_${AGENCYID}" \
+  -d "agency-${AGENCYID}" \
   -f /usr/local/transitclock/db/ddl_postgres_org_transitclock_db_structs.sql
 
 psql \
   -h "${POSTGRES_PORT_5432_TCP_ADDR}" \
   -p "${POSTGRES_PORT_5432_TCP_PORT}" \
   -U postgres \
-  -d "TC_AGENCY_${AGENCYID}" \
+  -d "agency-${AGENCYID}" \
   -f /usr/local/transitclock/db/ddl_postgres_org_transitclock_db_webstructs.sql
