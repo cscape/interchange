@@ -1,19 +1,12 @@
 FROM openjdk:8-jre
 
-ARG AGENCYID="1"
-ARG GTFS_URL="http://gohart.org/google/google_transit.zip"
-ARG GTFSRTVEHICLEPOSITIONS="http://realtime.prod.obahart.org:8088/vehicle-positions"
-ARG TRANSITCLOCK_PROPERTIES="config/agency.properties"
-
-ENV AGENCYID ${AGENCYID}
-ENV GTFS_URL ${GTFS_URL}
-ENV GTFSRTVEHICLEPOSITIONS ${GTFSRTVEHICLEPOSITIONS}
-ENV TRANSITCLOCK_PROPERTIES ${TRANSITCLOCK_PROPERTIES}
 ENV TRANSITCLOCK_LOGS /usr/local/transitclock/logs/
 
 RUN apt-get update
 RUN apt-get install -y postgresql-client
 RUN apt-get install -y wget
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN apt-get install -y nodejs
 
 # TOMCAT CONFIG
 ENV CATALINA_HOME /usr/local/tomcat

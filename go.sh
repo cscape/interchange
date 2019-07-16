@@ -8,10 +8,7 @@ docker rm transitclock-db && docker rm transitclock-server-instance
 docker rmi transitclock-server
 
 # Builds image from Dockerfile
-docker build --no-cache -t transitclock-server \
-  --build-arg AGENCYID="halifax" \
-  --build-arg GTFS_URL="http://gtfs.halifax.ca/static/google_transit.zip" \
-  --build-arg GTFSRTVEHICLEPOSITIONS="http://gtfs.halifax.ca/realtime/Vehicle/VehiclePositions.pb" .
+docker build --no-cache -t transitclock-server .
 
 # Initiates the database container
 docker run \
