@@ -35,6 +35,8 @@ RUN mkdir db cache logs data
 
 RUN sed -i 's/\r//' /usr/local/transitclock/bin/*.sh
 RUN chmod 777 /usr/local/transitclock/bin/*.sh
+RUN find /usr/local/transitclock -type d -print0 | xargs -0 chmod 777 
+RUN find /usr/local/transitclock -type f -print0 | xargs -0 chmod 777
 
 EXPOSE 8080
 
