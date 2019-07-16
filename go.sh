@@ -10,10 +10,10 @@ docker rmi transitclock-server
 
 docker build --no-cache -t transitclock-server \
 --build-arg TRANSITCLOCK_PROPERTIES="config/agency.properties" \
---build-arg AGENCYID="1" \
---build-arg AGENCYNAME="MBTA" \
---build-arg GTFS_URL="https://cdn.mbta.com/MBTA_GTFS.zip" \
---build-arg GTFSRTVEHICLEPOSITIONS="https://data.texas.gov/download/eiei-9rpf/application%2Foctet-stream" .
+--build-arg AGENCYID="2" \
+--build-arg AGENCYNAME="halifax" \
+--build-arg GTFS_URL="http://gtfs.halifax.ca/static/google_transit.zip" \
+--build-arg GTFSRTVEHICLEPOSITIONS="http://gtfs.halifax.ca/realtime/Vehicle/VehiclePositions.pb" .
 
 docker run --name transitclock-db -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD -d postgres:9.6.3
 
