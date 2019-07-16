@@ -1,4 +1,3 @@
-set -u
 export ConfigPropsFile=/usr/local/transitclock/config/$AGENCYID.properties
 echo "Setting substitutes for $AGENCYID at $ConfigPropsFile"
 
@@ -9,3 +8,4 @@ sed -i -e "s|PGPASSWORD|${PGPASSWORD}|g" $ConfigPropsFile
 sed -i -e "s|DATABASE_NAME|TC_AGENCY_${AGENCYID}|g" $ConfigPropsFile
 
 echo "Finished setting substitutes for $AGENCYID"
+sleep 3
