@@ -7,4 +7,18 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPAS
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
-java -Dtransitclock.db.dbName=$AGENCYNAME -Dtransitclock.hibernate.configFile=/usr/local/transitclock/config/hibernate.cfg.xml -Dtransitclock.db.dbHost=$POSTGRES_PORT_5432_TCP_ADDR:$POSTGRES_PORT_5432_TCP_PORT -Dtransitclock.db.dbUserName=postgres -Dtransitclock.db.dbPassword=$PGPASSWORD -Dtransitclock.db.dbType=postgresql -cp /usr/local/transitclock/Core.jar org.transitclock.db.webstructs.WebAgency $AGENCYID 127.0.0.1 $AGENCYNAME postgresql $POSTGRES_PORT_5432_TCP_ADDR postgres $PGPASSWORD
+java \
+  -Dtransitclock.db.dbName="TC_AGENCY_${AGENCYNAME}" \
+  -Dtransitclock.hibernate.configFile=/usr/local/transitclock/config/hibernate.cfg.xml \
+  -Dtransitclock.db.dbHost="${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}" \
+  -Dtransitclock.db.dbUserName="postgres" \
+  -Dtransitclock.db.dbPassword="${PGPASSWORD}" \
+  -Dtransitclock.db.dbType="postgresql" \
+  -cp /usr/local/transitclock/Core.jar org.transitclock.db.webstructs.WebAgency \
+  "${AGENCYID}" \
+  127.0.0.1 \
+  "TC_AGENCY_${AGENCYNAME}" \
+  postgresql \
+  $POSTGRES_PORT_5432_TCP_ADDR \
+  postgres \
+  $PGPASSWORD

@@ -7,4 +7,11 @@ find /usr/local/transitclock/config/ -type f -exec sed -i s#"PGPASSWORD"#"$PGPAS
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"AGENCYNAME"#"$AGENCYNAME"#g {} \;
 find /usr/local/transitclock/config/ -type f -exec sed -i s#"GTFSRTVEHICLEPOSITIONS"#"$GTFSRTVEHICLEPOSITIONS"#g {} \;
 
-java -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey -c "/usr/local/transitclock/config/agency.properties" -d "foo" -e "og.crudden@gmail.com" -n "Sean Og Crudden" -p "123456" -u "http://www.transitclock.org"
+java \
+  -cp /usr/local/transitclock/Core.jar org.transitclock.applications.CreateAPIKey \
+  -c "/usr/local/transitclock/config/agency.properties" \
+  -d "foo" \
+  -e "og.crudden@gmail.com" \
+  -n "Sean Og Crudden" \
+  -p "123456" \
+  -u "http://www.transitclock.org"
