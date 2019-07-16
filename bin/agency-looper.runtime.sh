@@ -7,11 +7,9 @@ K=0
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
-  AGENCYID="${ID}"
-  GTFS_URL="${GTFS}"
 
   AGENCYID="${ID}" . create_tables.sh
-  AGENCYID="${ID}" GTFS_URL="${GTFS_URL}" . import_gtfs.sh
+  AGENCYID="${ID}" GTFS_URL="${GTFS}" . import_gtfs.sh
   AGENCYID="${ID}" . create_webagency.sh
   if [ $K -eq 0 ]
   then

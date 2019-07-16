@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Import GTFS file.'
+set -u
 . substitute.sh
 
 java \
