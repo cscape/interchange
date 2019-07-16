@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 echo 'THETRANSITCLOCK DOCKER: Create Tables'
 
+AGENCYID=$AGENCYID . substitute.sh
+
 java -cp /usr/local/transitclock/Core.jar org.transitclock.applications.SchemaGenerator -p org.transitclock.db.structs -o /usr/local/transitclock/db
 java -cp /usr/local/transitclock/Core.jar org.transitclock.applications.SchemaGenerator -p org.transitclock.db.webstructs -o /usr/local/transitclock/db
 

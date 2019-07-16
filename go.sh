@@ -33,8 +33,6 @@ docker run \
 docker run \
   --name transitclock-server-instance \
   --rm \
-  --link transitclock-db:postgres \
-  -e PGPASSWORD="${PGPASSWORD}" \
   -e AGENCYID="${Tempagencyid}" \
   transitclock-server \
   substitute.sh
