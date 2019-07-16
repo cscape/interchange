@@ -23,4 +23,4 @@ nohup java \
   -configRev 0 \
   > /usr/local/transitclock/logs/output.txt &
 
-tail -f /dev/null
+tail -f /dev/null &
