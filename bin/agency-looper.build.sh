@@ -8,7 +8,7 @@ echo 'Starting agency looper'
 
 __CONFIGPATH="/usr/local/transitclock/agencies"
 __GENERIC="/usr/local/transitclock/config/__generic.properties"
-
+K=0
 
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
@@ -23,6 +23,15 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   sed -i "s|*AGENCYID|${ID}|g" "${NEW_CONFIG_PATH}"
   sed -i "s|*GTFSRT|${GTFSRT}|g" "${NEW_CONFIG_PATH}"
   sed -i "s|*AGENCYNAME|${NAME}|g" "${NEW_CONFIG_PATH}"
+  if [ $K -eq 0 ]
+  then
+    # Primary core, replace with nothing
+    sed -i "s|*SECONDARYRMI||g" "${NEW_CONFIG_PATH}"
+  else
+    # Secondary core, replace with random RMI port
+    sed -i "s|*SECONDARYRMI|transitclock.rmi.secondaryRmiPort=0|g" "${NEW_CONFIG_PATH}"
+  fi
+  ((K++))
 done
 
 # Delete the generic template since it's no longer needed
