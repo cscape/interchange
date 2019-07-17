@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo 'THETRANSITCLOCK DOCKER: Start TheTransitClock.'
+echo 'THETRANSITCLOCK DOCKER: Launching TheTransitClock for ${AGENCYID}'
 . substitute.sh
 
 nohup java \
@@ -19,5 +19,7 @@ nohup java \
   "${SECONDARY_RMI}" \
   -jar /usr/local/transitclock/Core.jar \
   -configRev 0 &
+
+echo "THETRANSITCLOCK DOCKER: Launched core for ${AGENCYID}"
 
 # tail -f /dev/null &

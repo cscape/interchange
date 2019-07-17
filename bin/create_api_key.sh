@@ -14,3 +14,5 @@ java \
   -e "og.crudden@gmail.com" \
   -p "123456" \
   -d "foo"
+
+echo "THETRANSITCLOCK DOCKER: Finished creating API key for ${AGENCYID}"

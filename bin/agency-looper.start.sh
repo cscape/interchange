@@ -39,11 +39,12 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   if [ $J -eq 0 ]; then
     # Only run Create API Key on the primary agency
     AGENCYID="${ID}" . create_api_key.sh
-    AGENCYID="${ID}" . start_tomcat.sh
   fi
   J=$((J + 1))
 done
 
 echo "THETRANSITCLOCK DOCKER: Finished launching all cores"
+
+AGENCYID="${FIRSTAGENCYID}" . start_tomcat.sh
 
 tail -f /dev/null
