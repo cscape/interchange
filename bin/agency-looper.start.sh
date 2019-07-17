@@ -23,8 +23,8 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 
   if [[ "$SECONDARY_RMISTATUS" == "true" ]]; then
     # Leave this blank so it's not put into the core as an argument
-    echo "Setting SECONDARY_RMI as blank"
-    SECONDARY_RMI=""
+    # echo "Setting SECONDARY_RMI as blank"
+    # SECONDARY_RMI=""
   fi
 
   AGENCYID="${ID}" SECONDARY_RMI="${SECONDARY_RMI}" . start_core.sh
