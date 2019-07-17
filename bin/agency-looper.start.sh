@@ -25,6 +25,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   fi
 
   AGENCYID="${ID}" SECONDARY_RMI="${SECONDARY_RMI}" . start_core.sh
+  PRIMARY_AGENCY="${FIRSTAGENCYID}" AGENCYID="${ID}" . create_webagency.sh
 
   K=$((K + 1))
 done

@@ -9,6 +9,8 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   . "${filename}"
 
   if [ $K -eq 0 ]; then
+    # Only run Create API Key on the primary agency
+    AGENCYID="${ID}" . create_api_key.sh
     AGENCYID="${ID}" . start_tomcat.sh
   fi
   K=$((K + 1))
