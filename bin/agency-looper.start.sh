@@ -54,5 +54,6 @@ done
 echo "THETRANSITCLOCK DOCKER: Finished launching all cores"
 
 AGENCYID="${FIRSTAGENCYID}" . start_tomcat.sh
+. override-tomcat.sh
 
 tail -f /dev/null
