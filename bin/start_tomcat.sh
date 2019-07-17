@@ -18,4 +18,4 @@ export JAVA_OPTS="$JAVA_OPTS -Dtransitclock.apikey=${APIKEY} \
 # -Dhibernate.connection.password=${PGPASSWORD} \
 # -Dtransitclock.db.dbType=postgresql"
 
-. /usr/local/tomcat/bin/startup.sh
+/usr/local/tomcat/bin/startup.sh
