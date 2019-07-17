@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo 'THETRANSITCLOCK DOCKER: Create WebAgency.'
+echo "THETRANSITCLOCK DOCKER: Creating WebAgency for ${AGENCYID}"
 . substitute.sh
 
 # WebAgency MUST be created on the primary core
@@ -19,3 +19,5 @@ java \
   "${POSTGRES_PORT_5432_TCP_ADDR}" \
   postgres \
   "${PGPASSWORD}"
+
+echo "THETRANSITCLOCK DOCKER: Finished creating WebAgency for ${AGENCYID}"

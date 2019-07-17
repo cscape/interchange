@@ -30,4 +30,20 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   K=$((K + 1))
 done
 
-echo 'Finished starting up all TransitClock agencies'
+J=0
+# Load in each agency & loop
+for filename in /usr/local/transitclock/agencies/*.env; do
+  [ -e "$filename" ] || continue
+  . "${filename}"
+
+  if [ $J -eq 0 ]; then
+    # Only run Create API Key on the primary agency
+    AGENCYID="${ID}" . create_api_key.sh
+    AGENCYID="${ID}" . start_tomcat.sh
+  fi
+  J=$((J + 1))
+done
+
+echo "THETRANSITCLOCK DOCKER: Finished launching all cores"
+
+tail -f /dev/null
