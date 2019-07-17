@@ -22,7 +22,6 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   # Replace new props file with data
   sed -i "s|*AGENCYID|${ID}|g" "${NEW_CONFIG_PATH}"
   sed -i "s|*GTFSRT|${GTFSRT}|g" "${NEW_CONFIG_PATH}"
-  sed -i "s|*AGENCYNAME|${NAME}|g" "${NEW_CONFIG_PATH}"
   if [ $K -eq 0 ]
   then
     # Primary core, replace with nothing
