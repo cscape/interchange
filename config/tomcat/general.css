@@ -1,0 +1,110 @@
+/*
+ * This file contains general CSS config for TheTransitClock pages
+ */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: normal;
+  margin: 0px 0px 10px 0px;
+}
+
+/* For the header on each page */
+#header {
+    background: linear-gradient(to right, #32318C , #9A0089);
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  color: #FFF;
+}
+/* For header need to override link styles */
+#header a:link { color: white;}
+#header a:visited { color: white;}
+
+#mainDiv {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+}
+
+#title {
+  margin: 1rem auto 1rem auto;
+  font-weight: lighter;
+  font-size: 2.5rem;
+  padding: 0 1rem;
+}
+
+#subtitle {
+  text-align: left;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* For list of choices to be centered in page, e.g. list of reports
+ */
+.choicesList {
+  max-width: 350px;
+  margin: 1rem 0;
+  line-height: 125%;
+  padding: 0 1rem 0 2rem;
+}
+
+/* Make links look better. No underlining, keep colors consistent. */
+a:link {
+  text-decoration: none;
+  color: #BF0077;
+}
+
+a:visited {
+  color: #BF0077;
+}
+
+.ui-tooltip, body .ui-tooltip {
+  /* Change background color of tooltips a bit and use a reasonable font size */
+  background: #F2F2F2;
+  font-size: small;
+  padding: 0.25rem;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1pt solid #E6E6E6;
+  font-family: inherit;
+}
+
+/* Make input widgets use different color and larger font */
+input, select {
+  background-color: #f8f8f8;
+  font-size: large;
+}
+
+.earlyColor {
+  background: #f2b7cd;
+  border-radius: 4px; 
+}
+
+.lateColor {
+  background: #fbfd97;
+  border-radius: 4px; 
+}
+
+.problemColor {
+  background: #f2b7cd;
+  border-radius: 4px;
+}
+
+/* For tables showing data in reports */
+#dataTable {
+  margin-left: auto;
+   margin-right: auto;
+}
+
+#dataTable, #dataTable th, #dataTable td {
+ border: 1px solid #BBB;
+ border-collapse: collapse;
+}
+
+#dataTable th, #dataTable td {
+    padding: 2px 10px;
+}
+
+#dataTable th, #dataTable thead {
+  background: #ddd;
+}
