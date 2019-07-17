@@ -32,17 +32,17 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   M=$((M + 1))
 done
 
-J=0
+# J=0
 # Load in each agency & loop
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
 
-  if [ $J -eq 0 ]; then
+  # if [ $J -eq 0 ]; then
     # Only run Create API Key on the primary agency
     AGENCYID="${ID}" . create_api_key.sh
-  fi
-  J=$((J + 1))
+  # fi
+  # J=$((J + 1))
 done
 
 echo "THETRANSITCLOCK DOCKER: Finished launching all cores"
