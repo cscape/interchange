@@ -11,7 +11,6 @@ ENV TOMCAT_TGZ_URL https://www-us.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$
 RUN apt-get update
 RUN apt-get install -y postgresql-client
 RUN apt-get install -y wget
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 
 # TOMCAT CONFIG
 RUN mkdir -p "$CATALINA_HOME"
