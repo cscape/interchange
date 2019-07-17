@@ -3,6 +3,7 @@ echo 'Starting up all TransitClock agencies'
 . substitute.sh
 
 K=0
+FIRSTAGENCYID=
 # Load in each agency & loop
 for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
@@ -14,7 +15,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 
   if [ $K -eq 0 ]; then
     # Start Tomcat using the 1st agency's API key
-    AGENCYID="${ID}" . start_tomcat.sh
+    FIRSTAGENCYID="${ID}"
     SECONDARY_RMISTATUS=false
   fi
 
@@ -29,5 +30,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 done
 
 echo 'Finished starting up all TransitClock agencies'
+
+AGENCYID="${FIRSTAGENCYID}" . start_tomcat.sh
 
 tail -f /dev/null
