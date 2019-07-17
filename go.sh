@@ -27,7 +27,7 @@ docker run \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e PGUSERNAME="${PGUSERNAME}" \
   transitclock-server \
-  ./check_db_up.sh
+  check_db_up.sh
 
 # Sets up the database and necessary stuff
 docker run \
@@ -37,7 +37,7 @@ docker run \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e PGUSERNAME="${PGUSERNAME}" \
   transitclock-server \
-  ./agency-looper.runtime.tables.sh
+  agency-looper.runtime.tables.sh
 
 # Sets up the database and necessary stuff
 docker run \
@@ -47,7 +47,7 @@ docker run \
   -e PGPASSWORD="${PGPASSWORD}" \
   -e PGUSERNAME="${PGUSERNAME}" \
   transitclock-server \
-  ./agency-looper.runtime.gtfs.sh
+  agency-looper.runtime.gtfs.sh
 
 # Starts TransitClock cores
 docker run \
@@ -58,4 +58,4 @@ docker run \
   -e PGUSERNAME="${PGUSERNAME}" \
   -p 3020:8080 \
   transitclock-server \
-  ./agency-looper.start.sh
+  agency-looper.start.sh
