@@ -12,7 +12,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   . "${filename}"
   AGENCYID="${ID}"
   GTFS_URL="${GTFS}"
-  SECONDARY_RMI=""
+  SECONDARY_RMI="-Dtransitclock.rmi.secondaryRmiPort=0"
   SECONDARY_RMISTATUS=true
 
   if [ $M -eq 0 ]; then
@@ -21,7 +21,7 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     SECONDARY_RMISTATUS=false
   fi
 
-  if [ "$SECONDARY_RMISTATUS" = true ]; then
+  if [[ "$SECONDARY_RMISTATUS" == "true" ]]; then
     # Leave this blank so it's not put into the core as an argument
     SECONDARY_RMI=""
   fi
