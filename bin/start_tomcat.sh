@@ -9,6 +9,7 @@ export APIKEY=$(AGENCYID="${AGENCYID}" . get_api_key.sh)
 # Connection info to the PRIMARY AGENCY database for Tomcat
 export CATALINA_OPTS="$CATALINA_OPTS -Dtransitclock.db.dbType=postgresql \
 -Dtransitclock.apikey=${APIKEY} -Dtransitclock.db.dbName=agency-${AGENCYID} \
+-Dtransitclock.hibernate.configFile=/usr/local/transitclock/config/hibernate.cfg.xml \
 -Dtransitclock.db.dbHost=${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT} \
 -Dhibernate.connection.url=jdbc:postgresql://${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}/agency-${AGENCYID} \
 -Dtransitclock.db.dbUserName=postgres \
