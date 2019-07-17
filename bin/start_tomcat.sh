@@ -2,6 +2,8 @@
 echo 'THETRANSITCLOCK DOCKER: Start Tomcat/Catalina'
 . substitute.sh
 
+cp -f /usr/local/transitclock/config/web.xml "${CATALINA_HOME}/webapps/web/WEB-INF/web.xml"
+
 rmiregistry &
 
 # set the API as an environment variable so we can set in JSP of template/includes.jsp in the transitime webapp
