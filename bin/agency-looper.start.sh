@@ -30,7 +30,3 @@ for filename in /usr/local/transitclock/agencies/*.env; do
 done
 
 echo 'Finished starting up all TransitClock agencies'
-
-AGENCYID="${FIRSTAGENCYID}" . start_tomcat.sh
-
-tail -f /dev/null

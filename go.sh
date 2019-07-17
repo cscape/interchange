@@ -39,7 +39,17 @@ docker run \
   transitclock-server \
   agency-looper.runtime.sh
 
-# Starts Tomcat and TransitClock cores
+# Starts TransitClock cores
+docker run \
+  --name transitclock-server-instance \
+  --rm \
+  --link transitclock-db:postgres \
+  -e PGPASSWORD="${PGPASSWORD}" \
+  -e PGUSERNAME="${PGUSERNAME}" \
+  transitclock-server \
+  agency-looper.start.sh
+
+# Starts Tomcat
 docker run \
   --name transitclock-server-instance \
   --rm \
@@ -48,4 +58,4 @@ docker run \
   -e PGUSERNAME="${PGUSERNAME}" \
   -p 3020:8080 \
   transitclock-server \
-  agency-looper.start.sh
+  finalboot.sh
