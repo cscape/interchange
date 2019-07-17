@@ -17,6 +17,7 @@ nohup java \
   -Dtransitclock.configFiles="/usr/local/transitclock/config/${AGENCYID}.properties" \
   -Dtransitclock.logging.dir="${TRANSITCLOCK_LOGS}" \
   "${SECONDARY_RMI}" \
-  -jar /usr/local/transitclock/Core.jar &
+  -jar /usr/local/transitclock/Core.jar \
+  -configRev 0 &
 
 # tail -f /dev/null &
