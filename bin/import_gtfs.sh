@@ -4,11 +4,11 @@ set -u
 . substitute.sh
 
 java \
-  -Xmx1024M \
-  -Dtransitclock.core.agencyId="${AGENCYID}" \
-  -Dtransitclock.configFiles="/usr/local/transitclock/config/${AGENCYID}.properties" \
-  -Dtransitclock.logging.dir="/usr/local/transitclock/logs/" \
+  -Dtransitclock.logging.dir=/tmp \
   -cp /usr/local/transitclock/Core.jar org.transitclock.applications.GtfsFileProcessor \
+  -c "/usr/local/transitclock/config/${AGENCYID}.properties" \
+  -storeNewRevs \
+  -skipDeleteRevs \
   -gtfsUrl "${GTFS_URL}" \
   -maxTravelTimeSegmentLength 100
 
