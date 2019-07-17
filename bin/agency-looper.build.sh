@@ -28,10 +28,6 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     # Primary core, replace with nothing
     sed -i "s|*SECONDARYRMI||g" "${NEW_CONFIG_PATH}"
     sed -i "s|*AGENCYID|${ID}|g" /usr/local/transitclock/config/web.xml
-    mkdir "${CATALINA_HOME}/webapps/"
-    mkdir "${CATALINA_HOME}/webapps/web"
-    mkdir "${CATALINA_HOME}/webapps/web/WEB-INF"
-    cp -f /usr/local/transitclock/config/web.xml "${CATALINA_HOME}/webapps/web/WEB-INF/web.xml"
   else
     # Secondary core, replace with random RMI port
     sed -i "s|*SECONDARYRMI|transitclock.rmi.secondaryRmiPort=0|g" "${NEW_CONFIG_PATH}"
