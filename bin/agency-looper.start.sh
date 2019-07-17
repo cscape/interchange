@@ -2,6 +2,8 @@
 echo 'Starting up all TransitClock agencies'
 . substitute.sh
 
+rmiregistry &
+
 M=0
 FIRSTAGENCYID=""
 # Load in each agency & loop
