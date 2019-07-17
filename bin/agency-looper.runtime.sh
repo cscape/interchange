@@ -9,6 +9,9 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   [ -e "$filename" ] || continue
   . "${filename}"
 
+  AGENCYID="${ID}" . create_tables.sh
+  AGENCYID="${ID}" GTFS_URL="${GTFS}" . import_gtfs.sh
+
   if [ $K -eq 0 ]
   then
     # Only run Create API Key on the primary agency
@@ -16,8 +19,6 @@ for filename in /usr/local/transitclock/agencies/*.env; do
     PRIMARY_AGENCY="${ID}"
   fi
 
-  AGENCYID="${ID}" . create_tables.sh
-  AGENCYID="${ID}" GTFS_URL="${GTFS}" . import_gtfs.sh
   PRIMARY_AGENCY="${PRIMARY_AGENCY}" AGENCYID="${ID}" . create_webagency.sh
 
   K=$((K + 1))
