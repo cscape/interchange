@@ -1,4 +1,4 @@
-# Interchange2
+# Interchange
 
 Things to make TheTransitClock go:
 
