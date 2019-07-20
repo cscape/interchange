@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo 'THETRANSITCLOCK DOCKER: Import GTFS file.'
+echo "THETRANSITCLOCK DOCKER: Import GTFS file for ${AGENCYID}"
 . substitute.sh
 
 java \
@@ -9,8 +9,7 @@ java \
   -c "/usr/local/transitclock/config/${AGENCYID}.properties" \
   -storeNewRevs \
   -skipDeleteRevs \
-  -gtfsUrl "${GTFS_URL}" \
-  -maxTravelTimeSegmentLength 100
+  -gtfsUrl "${GTFS_URL}"
 
 psql \
   -h "${POSTGRES_PORT_5432_TCP_ADDR}" \

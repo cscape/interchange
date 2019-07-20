@@ -2,7 +2,10 @@
 echo 'Starting up all TransitClock agencies'
 . substitute.sh
 
+echo "Starting RMI registry"
 rmiregistry &
+echo "Waiting 8 seconds to allow RMI registry to load"
+sleep 8
 
 M=0
 FIRSTAGENCYID=""
@@ -45,8 +48,8 @@ for filename in /usr/local/transitclock/agencies/*.env; do
   . "${filename}"
 
   # if [ $J -eq 0 ]; then
-    # Only run Create API Key on the primary agency
-    AGENCYID="${ID}" . create_api_key.sh
+  # Only run Create API Key on the primary agency
+  AGENCYID="${ID}" . create_api_key.sh
   # fi
   # J=$((J + 1))
 done

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo 'THETRANSITCLOCK DOCKER: Create API key.'
+echo "THETRANSITCLOCK DOCKER: Create API key for ${AGENCYID}"
 set -u
 . substitute.sh
 

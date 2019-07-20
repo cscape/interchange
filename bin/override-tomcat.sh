@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sleep 10
 echo "Overriding default TheTransitClock Tomcat data..."
 
 SRC="/usr/local/transitclock/config/tomcat"
